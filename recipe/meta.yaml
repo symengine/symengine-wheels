@@ -11,7 +11,7 @@ source:
   sha256: 8f6468137baa7f799e047dd0b9149c4017d8d32e755f1e0329209680879c1f8f
 
 build:
-  number: 0
+  number: 1
   skip: true        # [win and not py35]
   features:
     - vc14          # [win and py35]
@@ -40,6 +40,7 @@ test:
 about:
   home: https://github.com/symengine/symengine.py
   license: MIT
+  license_file: LICENSE
   summary: 'Python wrappers for SymEngine, a fast symbolic manipulation library, written in C++'
 
 extra:
