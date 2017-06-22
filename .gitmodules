@@ -1,0 +1,9 @@
+[submodule "multibuild"]
+	path = multibuild
+	url = https://github.com/matthew-brett/multibuild
+[submodule "symengine"]
+	path = symengine
+	url = https://github.com/symengine/symengine.py
+[submodule "libsymengine"]
+	path = libsymengine
+	url = https://github.com/symengine/symengine
