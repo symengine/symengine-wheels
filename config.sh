@@ -58,6 +58,11 @@ function pre_build {
     set -x
     #echo "nameserver 192.248.8.97" > /etc/resolv.conf
     export PATH=$BUILD_PREFIX/bin:$PATH
+    if [ -n "$IS_OSX" ]; then
+        export CFLAGS="-arch x86_64"
+        export FFLAGS="-arch x86_64"
+        export LDFLAGS="-arch x86_64"
+    fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
     build_gmp 6.1.2 https://gmplib.org/download/gmp
