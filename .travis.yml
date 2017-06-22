@@ -70,6 +70,7 @@ matrix:
         - UPLOAD_SDIST=yes
 
 before_install:
+    - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}
     - source multibuild/common_utils.sh
     - source multibuild/travis_steps.sh
     - before_install
@@ -85,7 +86,8 @@ script:
 
 deploy:
   provider: releases
-  api-key: "GITHUB OAUTH TOKEN"
+  api-key:
+    secure: "dzrmW1rzxdybuM6a+J94R0sD/ayG0HeNIQfklyrxV4pLjKU0GH2VjqhK0dca6y0Zn/PeMnYLEERmWsnqfRq2+0panPfbhYlWbDfUyhV/1DOxCxTcljM98e4Gg8xQU/4EUSrfI6rSF9sR64IOKr6Da6hEcX0Fkq08LExcUgNBWYOjzdTfEF3C6dY32MCHCtTP7SHmvTbSXnc39cUp51pNKin80MnMAAMSUOkdLsU/2HfB5mzNY/Ci8G+9QTre5NfDk9eXiYRiNhscxjZsZ2NYhmiripO8LvT0M49TUcv7u+47nZyqqNArnbjFMlHxRwXc5BVSg4XkNgIQrFkyaX1JAnUkYQscV9DqnkhwB8Yck8HAHSrQg7WqF7msQE7ZY7o9LAO7gn4afpW866BYVv10bPycGTOz2F1H+ZyYlFfCLFUuzQ9N45eH9IqzxFH85RJLMkHWb6pqYXMNiAn88pUzoE/UH4gjJkUdkiPSZ7U0HefQ+xNx//5L3qBHneyuVuWBZNLSwb4Ijx2w7SSGWb0E1tQEo0gAq2RdvyfiCLNTW3m9zC8KOoWc/8gSgfwTiCic2qeSz9BWWCDkW7o4fQJXuCdSSBjGDC6Djp/4IBPO06/EeYebEzhYMu2tdqUu8WszfuUZqA/ue5ziFWL6+bR2MFvnoFfdna3B40Z9tFQPXuU="
   file_glob: true
   file: symengine/dist/*
   skip_cleanup: true
