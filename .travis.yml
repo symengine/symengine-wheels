@@ -34,7 +34,9 @@ matrix:
     - python: 3.5
   include:
     - os: linux
-      env: MB_PYTHON_VERSION=2.7
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - UPLOAD_SDIST=yes
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
@@ -67,7 +69,6 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
-        - UPLOAD_SDIST=yes
 
 before_install:
     - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
@@ -82,7 +83,7 @@ install:
 
 script:
     - install_run $PLAT
-    - if [ $UPLOAD_SDIST == "yes" ]; then python setup.py sdist; fi
+    - if [ $UPLOAD_SDIST == "yes" ]; then python setup.py sdist && mv symengine/archives/* symengine/dist/; fi
 
 deploy:
   provider: releases
