@@ -60,8 +60,10 @@ function pre_build {
     #echo "nameserver 192.248.8.97" > /etc/resolv.conf
     export PATH=$BUILD_PREFIX/bin:$PATH
     if [ -n "$IS_OSX" ]; then
+        export CC="clang"
+        export CC="clang++"
         export CFLAGS="-arch x86_64"
-        export FFLAGS="-arch x86_64"
+        export CXXFLAGS="-arch x86_64"
         export LDFLAGS="-arch x86_64"
         export MACOSX_DEPLOYMENT_TARGET="10.9"
         function build_wheel {
