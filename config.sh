@@ -1,4 +1,7 @@
 function install_cmake {
+    if [ -e cmake-stamp ]; then
+       return;
+    fi
     if [ -n "$IS_OSX" ]; then
         brew install cmake || true
         cmake --version
@@ -7,6 +10,7 @@ function install_cmake {
         rm $BUILD_PREFIX/bin/cmake
         ln -s `which cmake28` $BUILD_PREFIX/bin/cmake
     fi
+    touch cmake-stamp
 }
 
 function build_gmp {
