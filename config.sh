@@ -1,6 +1,7 @@
 function install_cmake {
     if [ -n "$IS_OSX" ]; then
-        brew install cmake > /dev/null
+        brew install cmake || true
+        cmake --version
     else
         yum install -y cmake28 > /dev/null
         rm $BUILD_PREFIX/bin/cmake
