@@ -67,7 +67,7 @@ install:
   # Pin wheel to 0.26 to avoid Windows ABI tag for built wheel
   - pip install wheel==0.26
   - git submodule update --init
-  - pip install cython numpy==1.10.4 delocate
+  - pip install cython delocate numpy
 
 build_script:
   # Build the wheel

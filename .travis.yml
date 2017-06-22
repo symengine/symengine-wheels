@@ -4,11 +4,11 @@ env:
         # Commit from your-project that you want to build
         - BUILD_COMMIT=de314cbcc5469e3ecdb4ca7eff334095e6e6eaaa
         # pip dependencies to _build_ your project
-        - BUILD_DEPENDS="Cython numpy==1.10.4"
+        - BUILD_DEPENDS="Cython numpy"
         # pip dependencies to _test_ your project.  Include any dependencies
         # that you need, that are also specified in BUILD_DEPENDS, this will be
         # a separate install.
-        - TEST_DEPENDS="numpy==1.10.4 pytest sympy==1.0"
+        - TEST_DEPENDS="numpy pytest sympy==1.0"
         - PLAT=x86_64
         - UNICODE_WIDTH=32
         - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
