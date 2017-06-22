@@ -37,6 +37,7 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.5
+        - UPLOAD_SDIST=yes
 
 before_install:
     - source multibuild/common_utils.sh
@@ -50,14 +51,13 @@ install:
 
 script:
     - install_run $PLAT
+    - if [ $UPLOAD_SDIST == "yes" ]; then python setup.py sdist; fi
 
-after_success:
-    # Upload wheels to Rackspace container
-    - pip install wheelhouse-uploader
-    # This uploads the wheels to a Rackspace container owned by the
-    # scikit-learn team, available at http://wheels.scipy.org.  See above
-    # for information on using this account or choosing another.
-    - python -m wheelhouse_uploader upload --local-folder
-        ${TRAVIS_BUILD_DIR}/wheelhouse/
-        --no-update-index
-        wheels
+deploy:
+  provider: releases
+  api-key: "GITHUB OAUTH TOKEN"
+  file_glob: true
+  file: symengine/dist/*
+  skip_cleanup: true
+  on:
+    tags: true
