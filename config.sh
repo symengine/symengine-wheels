@@ -28,7 +28,7 @@ function build_gmp {
 }
 
 function build_symengine {
-    export PATH=$BUILD_PREFIX/bin:$PATH
+    export PATH=$PATH:$BUILD_PREFIX/bin
 
     local version=$1
     local url=$2
@@ -62,7 +62,7 @@ function build_symengine {
 function pre_build {
     set -x
     #echo "nameserver 192.248.8.97" > /etc/resolv.conf
-    export PATH=$BUILD_PREFIX/bin:$PATH
+    export PATH=$PATH:$BUILD_PREFIX/bin
     if [ -n "$IS_OSX" ]; then
         export CC="clang"
         export CXX="clang++"
