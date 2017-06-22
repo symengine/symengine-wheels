@@ -61,7 +61,7 @@ function pre_build {
     export PATH=$BUILD_PREFIX/bin:$PATH
     if [ -n "$IS_OSX" ]; then
         export CC="clang"
-        export CC="clang++"
+        export CXX="clang++"
         export CFLAGS="-arch x86_64"
         export CXXFLAGS="-arch x86_64"
         export LDFLAGS="-arch x86_64"
