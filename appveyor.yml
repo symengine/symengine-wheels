@@ -63,7 +63,10 @@ build_script:
 
 test_script:
   # Run some tests
-  - ps: get-childitem Demos\*.pyx | foreach-object { cython $_ }
+  - mkdir empty
+  - cd empty
+  - python -c "import symengine; symengine.test()"
+  - cd ..
 
 after_test:
   # If tests are successful, create binary packages for the project.
