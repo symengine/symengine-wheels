@@ -62,6 +62,7 @@ function pre_build {
         export CFLAGS="-arch x86_64"
         export FFLAGS="-arch x86_64"
         export LDFLAGS="-arch x86_64"
+        export MACOSX_DEPLOYMENT_TARGET="10.9"
     fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
