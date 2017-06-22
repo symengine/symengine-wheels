@@ -49,14 +49,19 @@ install:
   # Pin wheel to 0.26 to avoid Windows ABI tag for built wheel
   - pip install wheel==0.26
   - git submodule update --init
-  - pip install cython numpy==1.10.4
+  - pip install cython numpy==1.10.4 delocate
 
 build_script:
-  # Build and install the wheel
+  # Build the wheel
   - cd symengine
   - git fetch origin
   - git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel build_ext --symengine-dir=%CONDA_INSTALL_LOCN%\envs\symengine\Library\
+
+  # Fix the wheel
+  - python fix_windows_wheel.py %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\mpir.dll %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\symengine.dll
+
+  # Install the wheel
   - cd dist
   - pip install --pre --no-index -f . symengine
   - cd ..
