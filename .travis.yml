@@ -70,7 +70,7 @@ matrix:
         - UPLOAD_SDIST=yes
 
 before_install:
-    - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}
+    - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
     - source multibuild/common_utils.sh
     - source multibuild/travis_steps.sh
     - before_install
