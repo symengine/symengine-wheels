@@ -59,7 +59,7 @@ build_script:
   - python setup.py bdist_wheel build_ext --symengine-dir=%CONDA_INSTALL_LOCN%\envs\symengine\Library\
 
   # Fix the wheel
-  - python fix_windows_wheel.py %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\mpir.dll %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\symengine.dll
+  - python ..\fix_windows_wheel.py %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\mpir.dll %CONDA_INSTALL_LOCN%\envs\symengine\Library\bin\symengine.dll
 
   # Install the wheel
   - cd dist
