@@ -30,9 +30,15 @@ function build_symengine {
     if [ -e symengine-stamp ]; then
        return;
     fi
-    fetch_unpack $url/v${version}.tar.gz
+    fetch_unpack $url/${version}.tar.gz
 
-    (cd symengine-${version}                        \
+    local ver=${version}
+    if [[ $ver == "v"* ]]
+    then
+       ver=${ver:1};
+    fi
+
+    (cd symengine-${ver}                            \
         && cmake -DWITH_MPC=yes                     \
               -DBUILD_FOR_DISTRIBUTION=yes          \
               -DCMAKE_BUILD_TYPE=Release            \
@@ -52,7 +58,7 @@ function pre_build {
     set -x
     #echo "nameserver 192.248.8.97" > /etc/resolv.conf
     export PATH=$BUILD_PREFIX/bin:$PATH
-    symengine_version=`cat symengine/symengine_version.txt`
+    local symengine_version=`cat symengine/symengine_version.txt`
 
     build_gmp 6.1.2 https://gmplib.org/download/gmp
     build_simple mpfr 3.1.5 http://ftp.gnu.org/gnu/mpfr
