@@ -23,6 +23,7 @@ environment:
     - PYTHON: "C:\\Python35"
       PYTHON_VERSION: "3.5.x" # currently 3.5.1
       PYTHON_ARCH: "32"
+      UPLOAD_ARCHIVES: "yes"
       # conda is only used for downloading C/C++ packages
       CONDA_INSTALL_LOCN: C:\\Miniconda35
 
