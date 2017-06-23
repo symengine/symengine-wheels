@@ -43,7 +43,7 @@ function build_symengine {
        ver=${ver:1};
     fi
 
-    mv archives/${version}.tar.gz archives/symengine-${version}.tar.gz || true
+    mv archives/${version}.tar.gz archives/libsymengine-${version}.tar.gz || true
 
     (cd symengine-${ver}                            \
         && cmake -DWITH_MPC=yes                     \
@@ -90,6 +90,7 @@ function run_tests {
 
 if [ -n "$IS_OSX" ]; then
     function build_wheel {
+        echo "custom build_wheel for osx"
         # Set default building method to pip
         build_pip_wheel $@
         local wheelhouse=$(abspath ${WHEEL_SDIR:-wheelhouse})
