@@ -11,14 +11,6 @@ env:
         - TEST_DEPENDS="numpy pytest sympy==1.0"
         - PLAT=x86_64
         - UNICODE_WIDTH=32
-        - WHEELHOUSE_UPLOADER_USERNAME=travis-worker
-        # Following generated with
-        # travis encrypt -r your-org/your-project-wheels WHEELHOUSE_UPLOADER_SECRET=<the api key>
-        # This is for Rackspace uploads.  Contact Matthew Brett, or the
-        # scikit-learn team, for # permission (and the API key) to upload to
-        # the Rackspace account used here, or use your own account.
-        - secure:
-            "MNKyBWOzu7JAUmC0Y+JhPKfytXxY/ADRmUIMEWZV977FLZPgYctqd+lqel2QIFgdHDO1CIdTSymOOFZckM9ICUXg9Ta+8oBjSvAVWO1ahDcToRM2DLq66fKg+NKimd2OfK7x597h/QmUSl4k8XyvyyXgl5jOiLg/EJxNE2r83IA="
 
 language: python
 # The travis Python version is unrelated to the version we build and test
@@ -86,7 +78,7 @@ script:
 deploy:
   provider: releases
   api-key:
-    secure: "dzrmW1rzxdybuM6a+J94R0sD/ayG0HeNIQfklyrxV4pLjKU0GH2VjqhK0dca6y0Zn/PeMnYLEERmWsnqfRq2+0panPfbhYlWbDfUyhV/1DOxCxTcljM98e4Gg8xQU/4EUSrfI6rSF9sR64IOKr6Da6hEcX0Fkq08LExcUgNBWYOjzdTfEF3C6dY32MCHCtTP7SHmvTbSXnc39cUp51pNKin80MnMAAMSUOkdLsU/2HfB5mzNY/Ci8G+9QTre5NfDk9eXiYRiNhscxjZsZ2NYhmiripO8LvT0M49TUcv7u+47nZyqqNArnbjFMlHxRwXc5BVSg4XkNgIQrFkyaX1JAnUkYQscV9DqnkhwB8Yck8HAHSrQg7WqF7msQE7ZY7o9LAO7gn4afpW866BYVv10bPycGTOz2F1H+ZyYlFfCLFUuzQ9N45eH9IqzxFH85RJLMkHWb6pqYXMNiAn88pUzoE/UH4gjJkUdkiPSZ7U0HefQ+xNx//5L3qBHneyuVuWBZNLSwb4Ijx2w7SSGWb0E1tQEo0gAq2RdvyfiCLNTW3m9zC8KOoWc/8gSgfwTiCic2qeSz9BWWCDkW7o4fQJXuCdSSBjGDC6Djp/4IBPO06/EeYebEzhYMu2tdqUu8WszfuUZqA/ue5ziFWL6+bR2MFvnoFfdna3B40Z9tFQPXuU="
+    secure: "POUaCfVaSlA7h5DuDkDVEqTWCd0+DtAWLeszBg84cEMM7ra7CzU2fWyKpnNezWt0AkfdwyIyo3VYct3YVArPiE/qBmmjrNioIl5rlgMW9VCr6WU5LJ1Y7v+zOGH+Qm9B/jhvD1arXyVaWZSnXhhjHDSlPi5DpIT90GS1OL+4sGl1Q9XokM55m60bf6m038Yy1E/OfO0oPilmwHs4RfMWAbjVewuAunQLmiNZYvFkgQAqsZUCyhQdph5LT5jN9Y0MoKmR8G3FOelXRunSRsrfo0giFSHzfBGr2uMz/h7Yr80UzFkEive/LTc5pCDKtGzSCPv60oUbHjKNVN207QJAToazQVgkFoE7E4EHOxfOaGfO2aH45haeQ/EZWwJDq0rrg2Fv48mhaZVx9eVRUCRu40U4SQuPa2uYNMrP07aBWf8IDgFG3UOYhU4EwWFlwcX1XELK5MWGwGveYfKFPARVqCVnKujOhuUNXYNJM/5pDjXxK0DASxacSiqybCeU2gOcdjj0Xf8ZBBfdzVtoAf2i6vHoihWZG8ywTkqve3QxQurhy6sFwoQJhy2VFJQjOPJrFEdwCHdKriqeygPi/sf5PZMW6Haz9XWcDhjeZ6vZsXJVF/AczdQD7p5hutGPOrlM3udur9pnfjrCgdYvL4/r3n7L71/9/7g5i+MZ58t8u38="
   file_glob: true
   file: wheelhouse/*
   skip_cleanup: true
