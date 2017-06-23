@@ -54,7 +54,7 @@ function build_symengine {
               -DWITH_COTIRE=no                      \
               -DBUILD_TESTS=no                      \
               -DBUILD_BENCHMARKS=no                 \
-              -DBUILD_SHARED_LIBS=yes .             \
+              -DBUILD_SHARED_LIBS=no .              \
         && make -j4                                 \
         && make install)
 
