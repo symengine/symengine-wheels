@@ -55,8 +55,6 @@ install:
   # done from inside the powershell script as it would require to restart
   # the parent CMD process).
   - SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  - call install_cpp_deps_using_conda.cmd
-  - echo %PATH%
 
   # Fix MSVC builds for 64-bit Python
   # See
@@ -72,6 +70,9 @@ install:
   - pip install wheel==0.26
   - git submodule update --init
   - pip install cython delocate numpy
+
+  - call install_cpp_deps_using_conda.cmd
+  - echo %PATH%
 
 build_script:
   # Build the wheel
