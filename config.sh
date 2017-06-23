@@ -89,11 +89,18 @@ function run_tests {
 }
 
 if [ -n "$IS_OSX" ]; then
-    function build_wheel {
-        echo "custom build_wheel for osx"
-        # Set default building method to pip
-        build_pip_wheel $@
-        local wheelhouse=$(abspath ${WHEEL_SDIR:-wheelhouse})
+    function repair_wheelhouse {
+        echo "custom repair_wheelhouse for osx"
+        local wheelhouse=$1
+        check_pip
+        $PIP_CMD install delocate
+        delocate-listdeps $wheelhouse/*.whl # lists library dependencies
+        # repair_wheelhouse can take more than 10 minutes without generating output
+        # but jobs that do not generate output within 10 minutes are aborted by travis-ci.
+        # Echoing something here solves the problem.
+        echo in repair_wheelhouse, executing delocate-wheel
+        delocate-wheel $wheelhouse/*.whl # copies library dependencies into wheel
+
         local wheels=$(python $MULTIBUILD_DIR/supported_wheels.py $wheelhouse/*.whl)
         for wheel in $wheels
         do
