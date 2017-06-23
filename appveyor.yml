@@ -105,7 +105,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: 5cI9HM8TubwqVOJHQVBmQA3upCU6Tw4SlfqUnRQ2IbaoMklIreoMkexGI1ky5xHL
-  artifact: 'symengine\dist\*'
+  artifact: symengine\dist\*
   draft: false
   prerelease: false
   on:
