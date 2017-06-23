@@ -84,7 +84,7 @@ install:
 script:
     - install_run $PLAT
     - if [ $UPLOAD_SDIST == "yes" ]; then cd symengine && python setup.py sdist && cd .. && mv symengine/dist/*.tar.gz wheelhouse/; fi
-    - if [ $UPLOAD_SDIST == "yes" ]; then mv archives/* wheelhouse/; fi
+    - if [ $UPLOAD_SDIST == "yes" ]; then cp archives/* wheelhouse/; fi
 
 deploy:
   provider: releases

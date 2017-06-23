@@ -43,6 +43,8 @@ function build_symengine {
        ver=${ver:1};
     fi
 
+    mv archives/${version}.tar.gz archives/symengine-${version}.tar.gz || true
+
     (cd symengine-${ver}                            \
         && cmake -DWITH_MPC=yes                     \
               -DBUILD_FOR_DISTRIBUTION=yes          \
@@ -70,18 +72,6 @@ function pre_build {
         export CXXFLAGS="-arch x86_64"
         export LDFLAGS="-arch x86_64"
         export MACOSX_DEPLOYMENT_TARGET="10.9"
-        function build_wheel {
-            # Set default building method to pip
-            build_pip_wheel $@
-            local wheelhouse=$(abspath ${WHEEL_SDIR:-wheelhouse})
-            local wheels=$(python $MULTIBUILD_DIR/supported_wheels.py $wheelhouse/*.whl)
-            for wheel in $wheels
-            do
-                se_file_name=$(basename $wheel)
-                se_file_name="${se_file_name/macosx_10_6_intel./macosx_10_9_x86_64.macosx_10_10_x86_64.}"
-                mv $wheel $wheelhouse/$se_file_name
-            done
-        }
     fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
@@ -97,3 +87,18 @@ function run_tests {
     python --version
     python -c "import symengine; symengine.test()"
 }
+
+if [ -n "$IS_OSX" ]; then
+    function build_wheel {
+        # Set default building method to pip
+        build_pip_wheel $@
+        local wheelhouse=$(abspath ${WHEEL_SDIR:-wheelhouse})
+        local wheels=$(python $MULTIBUILD_DIR/supported_wheels.py $wheelhouse/*.whl)
+        for wheel in $wheels
+        do
+            se_file_name=$(basename $wheel)
+            se_file_name="${se_file_name/macosx_10_6_intel./macosx_10_9_x86_64.macosx_10_10_x86_64.}"
+            mv $wheel $wheelhouse/$se_file_name
+        done
+    }
+fi

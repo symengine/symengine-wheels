@@ -99,13 +99,14 @@ test_script:
 artifacts:
   # Archive the generated packages in the ci.appveyor.com build report.
   - path: symengine\dist\*
+    name: wheels
 
 deploy:
   description: 'Release to upload the built wheels'
   provider: GitHub
   auth_token:
     secure: 5cI9HM8TubwqVOJHQVBmQA3upCU6Tw4SlfqUnRQ2IbaoMklIreoMkexGI1ky5xHL
-  artifact: symengine\dist\*
+  artifact: wheels
   draft: false
   prerelease: false
   on:
