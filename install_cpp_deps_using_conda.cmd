@@ -1,7 +1,7 @@
 @Echo off 
 SETLOCAL
 
-mkdir symengine/dist
+mkdir symengine\dist
 if [%UPLOAD_ARCHIVES%] == [yes] appveyor DownloadFile http://mpir.org/mpir-3.0.0.tar.bz2 && mv mpir-3.0.0.tar.bz2 symengine/dist/mpir-3.0.0.tar.bz2
 
 call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
