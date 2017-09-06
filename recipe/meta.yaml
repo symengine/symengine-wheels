@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
-  sha256: 2f03af1983e435d6e96b46e25baaf326c06b0a0b5e03263671c72f1e83eef92d
+  sha256: 0ecccfe5a09b25b6640afca12de62062bdb60ed2712d6c16cc47fc1ba1e851ac
 
 build:
   number: 0
