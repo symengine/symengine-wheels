@@ -1,17 +1,15 @@
-{% set version = "0.2.0" %}
-{% set commit = "v0.2.0" %}
+{% set version = "0.3.0" %}
 
 package:
   name: python-symengine
   version: {{ version }}
 
 source:
-  fn: {{ commit }}.tar.gz
-  url: https://github.com/symengine/symengine.py/archive/{{ commit }}.tar.gz
-  sha256: 8f6468137baa7f799e047dd0b9149c4017d8d32e755f1e0329209680879c1f8f
+  url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
+  sha256: 2f03af1983e435d6e96b46e25baaf326c06b0a0b5e03263671c72f1e83eef92d
 
 build:
-  number: 1
+  number: 0
   skip: true        # [win and not py>=35]
   features:
     - vc14          # [win and py>=35]
@@ -20,12 +18,12 @@ requirements:
   build:
     - toolchain
     - cmake
-    - symengine     0.2.0
+    - symengine     0.3.0
     - python
     - cython
     - setuptools
   run:
-    - symengine     0.2.0
+    - symengine     0.3.0
     - python
 
 test:
