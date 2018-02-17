@@ -14,20 +14,6 @@ function install_cmake {
     touch cmake-stamp
 }
 
-function build_gmp {
-    local version=$1
-    local url=$2
-    if [ -e gmp-stamp ]; then
-       return;
-    fi
-    fetch_unpack $url/gmp-${version}.tar.bz2
-    (cd gmp-${version} \
-        && ./configure --prefix=$BUILD_PREFIX --enable-fat --enable-shared \
-        && make \
-        && make install)
-    touch gmp-stamp
-}
-
 function install_llvm {
     if [ -e llvm-stamp ]; then
        return;
@@ -40,7 +26,7 @@ function install_llvm {
         source /Users/travis/miniconda3/bin/activate root
         conda config --add channels conda-forge
         conda config --set show_channel_urls true
-        conda create -p `pwd`/llvm llvmdev=5.0.0
+        conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
         rsync -av `pwd`/llvm/ $BUILD_PREFIX/
     else
         mkdir llvm-5.0.1 && cd llvm-5.0.1
@@ -100,9 +86,9 @@ function pre_build {
     fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
-    build_gmp 6.1.2 https://gmplib.org/download/gmp
-    build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr
-    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc/
+    build_simple gmp 6.1.2 https://gmplib.org/download/gmp tar.gz --enable-fat --enable-shared --disable-static
+    build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr tar.gz --enable-shared --disable-static
+    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc tar.gz --enable-shared --disable-static
     install_llvm
     install_cmake
     build_symengine $symengine_version https://github.com/symengine/symengine/archive
