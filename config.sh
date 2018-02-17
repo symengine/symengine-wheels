@@ -14,6 +14,20 @@ function install_cmake {
     touch cmake-stamp
 }
 
+function build_gmp {
+    local version=$1
+    local url=$2
+    if [ -e gmp-stamp ]; then
+       return;
+    fi
+    fetch_unpack $url/gmp-${version}.tar.bz2
+    (cd gmp-${version} \
+        && ./configure --prefix=$BUILD_PREFIX --enable-fat --enable-shared \
+        && make \
+        && make install)
+    touch gmp-stamp
+}
+
 function install_llvm {
     if [ -e llvm-stamp ]; then
        return;
@@ -86,9 +100,9 @@ function pre_build {
     fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
-    build_simple gmp 6.1.2 https://gmplib.org/download/gmp tar.gz --enable-fat --enable-shared --disable-static
-    build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr tar.gz --enable-shared --disable-static
-    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc tar.gz --enable-shared --disable-static
+    build_gmp 6.1.2 https://gmplib.org/download/gmp
+    build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr
+    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc/
     install_llvm
     install_cmake
     build_symengine $symengine_version https://github.com/symengine/symengine/archive
