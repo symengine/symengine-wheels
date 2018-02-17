@@ -40,12 +40,12 @@ function install_llvm {
         conda config --add channels conda-forge
         conda config --set show_channel_urls true
         conda create -p `pwd`/llvm llvmdev=5.0.0
-        mv `pwd`/llvm/ $BUILD_PREFIX/
+        rsync -av `pwd`/llvm/ $BUILD_PREFIX/
     else
         mkdir llvm-5.0.1 && cd llvm-5.0.1
         fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
         cd ..
-        mv llvm-5.0.1/* $BUILD_PREFIX
+        rsync -av llvm-5.0.1/* $BUILD_PREFIX
     fi
     touch llvm-stamp
 }
