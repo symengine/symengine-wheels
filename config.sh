@@ -27,6 +27,29 @@ function build_gmp {
     touch gmp-stamp
 }
 
+function install_llvm {
+    if [ -e llvm-stamp ]; then
+       return;
+    fi
+    if [ -n "$IS_OSX" ]; then
+        local MINICONDA_URL="https://repo.continuum.io/miniconda"
+        local MINICONDA_FILE="Miniconda3-latest-MacOSX-x86_64.sh"
+        curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+        bash $MINICONDA_FILE -b
+        source /Users/travis/miniconda3/bin/activate root
+        conda config --add channels conda-forge
+        conda config --set show_channel_urls true
+        conda create -p `pwd`/llvm llvmdev=5.0.0
+        mv `pwd`/llvm/ $BUILD_PREFIX/
+    else
+        mkdir llvm-5.0.1 && cd llvm-5.0.1
+        fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
+        cd ..
+        mv llvm-5.0.1/* $BUILD_PREFIX
+    fi
+    touch llvm-stamp
+}
+
 function build_symengine {
     export PATH=$PATH:$BUILD_PREFIX/bin
 
@@ -54,6 +77,7 @@ function build_symengine {
               -DWITH_COTIRE=no                      \
               -DBUILD_TESTS=no                      \
               -DBUILD_BENCHMARKS=no                 \
+              -DWITH_LLVM=yes                       \
               -DBUILD_SHARED_LIBS=no .              \
         && make -j4                                 \
         && make install)
@@ -78,6 +102,7 @@ function pre_build {
     build_gmp 6.1.2 https://gmplib.org/download/gmp
     build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr
     build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc/
+    install_llvm
     install_cmake
     build_symengine $symengine_version https://github.com/symengine/symengine/archive
 }
