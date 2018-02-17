@@ -46,6 +46,7 @@ function install_llvm {
         mkdir llvm-5.0.1 && cd llvm-5.0.1
         fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
         cd ..
+        fetch_unpack http://releases.llvm.org/5.0.1/llvm-5.0.1.src.tar.xz
         rsync -av llvm-5.0.1/* $BUILD_PREFIX
     fi
     touch llvm-stamp
