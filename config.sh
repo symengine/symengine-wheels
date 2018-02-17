@@ -6,9 +6,10 @@ function install_cmake {
         brew install cmake || true
         cmake --version
     else
-        yum install -y cmake28 > /dev/null
-        rm $BUILD_PREFIX/bin/cmake
-        ln -s `which cmake28` $BUILD_PREFIX/bin/cmake
+        mkdir cmake && cd cmake
+        fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/cmake-3.10.2-manylinux1_x86_64.tar.gz
+        cd ..
+        rsync -av cmake/* $BUILD_PREFIX
     fi
     touch cmake-stamp
 }
