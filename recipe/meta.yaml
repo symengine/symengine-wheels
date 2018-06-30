@@ -9,15 +9,15 @@ source:
   sha256: 0ecccfe5a09b25b6640afca12de62062bdb60ed2712d6c16cc47fc1ba1e851ac
 
 build:
-  number: 0
+  number: 1
   skip: true        # [win and not py>=35]
-  features:
-    - vc14          # [win and py>=35]
 
 requirements:
   build:
-    - toolchain
     - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
     - symengine     0.3.0
     - python
     - cython
