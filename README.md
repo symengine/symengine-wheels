@@ -14,14 +14,16 @@ Summary: Python wrappers for SymEngine, a fast symbolic manipulation library, wr
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/python-symengine-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/python-symengine-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/python-symengine-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/python-symengine-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/python-symengine-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/python-symengine-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/python-symengine-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/python-symengine-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/python-symengine-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/python-symengine-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/python-symengine-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/python-symengine-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/python-symengine/badges/version.svg)](https://anaconda.org/conda-forge/python-symengine)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/python-symengine/badges/downloads.svg)](https://anaconda.org/conda-forge/python-symengine)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-python--symengine-green.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) |
 
 Installing python-symengine
 ===========================
@@ -66,6 +68,7 @@ To manage the continuous integration and simplify feedstock maintenance
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
+For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
