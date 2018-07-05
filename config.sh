@@ -43,6 +43,7 @@ function install_llvm {
         conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
         rsync -av `pwd`/llvm/ $BUILD_PREFIX/
     else
+        yum install xz -y
         mkdir llvm-5.0.1 && cd llvm-5.0.1
         fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
         cd ..
