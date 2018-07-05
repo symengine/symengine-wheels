@@ -47,7 +47,15 @@ function install_llvm {
         mkdir llvm-5.0.1 && cd llvm-5.0.1
         fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
         cd ..
-        fetch_unpack http://releases.llvm.org/5.0.1/llvm-5.0.1.src.tar.xz
+        local archive_fname=llvm-5.0.1.src.tar.xz
+        local arch_sdir="${ARCHIVE_SDIR:-archives}"
+        # Make the archive directory in case it doesn't exist
+        mkdir -p $arch_sdir
+        local out_archive="${arch_sdir}/${archive_fname}"
+        # Fetch the archive if it does not exist
+        if [ ! -f "$out_archive" ]; then
+            curl -L http://releases.llvm.org/5.0.1/llvm-5.0.1.src.tar.xz > $out_archive
+        fi
         rsync -av llvm-5.0.1/* $BUILD_PREFIX
     fi
     touch llvm-stamp
