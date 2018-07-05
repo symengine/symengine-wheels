@@ -42,6 +42,7 @@ function install_llvm {
         conda config --set show_channel_urls true
         conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
         sudo rsync -av `pwd`/llvm/ $BUILD_PREFIX/
+        source /Users/travis/miniconda3/bin/deactivate
     else
         yum install xz -y
         mkdir llvm-5.0.1 && cd llvm-5.0.1
