@@ -43,6 +43,9 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.7
     - os: osx
       language: generic
       env:
@@ -59,6 +62,10 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.7
 
 before_install:
   - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
