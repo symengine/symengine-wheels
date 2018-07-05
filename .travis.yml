@@ -9,7 +9,7 @@ env:
     # that you need, that are also specified in BUILD_DEPENDS, this will be
     # a separate install.
     - TEST_DEPENDS="pytest sympy==1.0"
-    - TEST_NPY_VERSION="1.13"
+    - TEST_NPY_VERSION="1.14.*"
     - PLAT=x86_64
     - UNICODE_WIDTH=32
 
@@ -43,6 +43,9 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.7
     - os: osx
       language: generic
       env:
@@ -59,6 +62,10 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.7
 
 before_install:
   - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
