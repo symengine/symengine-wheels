@@ -9,7 +9,7 @@ env:
     # that you need, that are also specified in BUILD_DEPENDS, this will be
     # a separate install.
     - TEST_DEPENDS="pytest sympy==1.0"
-    - TEST_NPY_VERSION="1.13"
+    - TEST_NPY_VERSION="1.14.*"
     - PLAT=x86_64
     - UNICODE_WIDTH=32
 
