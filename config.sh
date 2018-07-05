@@ -41,7 +41,7 @@ function install_llvm {
         conda config --add channels conda-forge
         conda config --set show_channel_urls true
         conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
-        rsync -av `pwd`/llvm/ $BUILD_PREFIX/
+        sudo rsync -av `pwd`/llvm/ $BUILD_PREFIX/
     else
         yum install xz -y
         mkdir llvm-5.0.1 && cd llvm-5.0.1
