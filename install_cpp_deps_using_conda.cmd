@@ -8,10 +8,10 @@ if [%UPLOAD_ARCHIVES%] == [yes] appveyor DownloadFile https://github.com/isuruf/
 
 
 call %CONDA_INSTALL_LOCN%\Scripts\activate.bat
-conda config --add channels conda-forge
-conda create -n symengine --yes symengine=0.3.0 mpir=3.0.0 mpfr=3.1.5 mpc=1.0.3 vc=14
+conda.exe config --add channels conda-forge
+conda.exe create -n symengine --yes symengine=0.3.0 mpir=3.0.0 mpfr=3.1.5 mpc=1.0.3 vc=14
 call activate symengine
-conda remove --yes --force vs2015_runtime
+conda.exe remove --yes --force vs2015_runtime
 
 ::back to Standard commission
 ENDLOCAL
