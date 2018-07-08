@@ -7,7 +7,9 @@ function install_cmake {
         cmake --version
     else
         yum install -y cmake28 > /dev/null
-        rm $BUILD_PREFIX/bin/cmake
+        if [ -f "$BUILD_PREFIX/bin/cmake" ]; then
+            rm $BUILD_PREFIX/bin/cmake
+        fi
         ln -s `which cmake28` $BUILD_PREFIX/bin/cmake
     fi
     touch cmake-stamp
