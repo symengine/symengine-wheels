@@ -77,7 +77,7 @@ function pre_build {
 
     build_gmp 6.1.2 https://gmplib.org/download/gmp
     build_simple mpfr 3.1.5 http://ftp.gnu.org/gnu/mpfr
-    build_simple mpc 1.0.3 http://www.multiprecision.org/mpc/download
+    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc/
     install_cmake
     build_symengine $symengine_version https://github.com/symengine/symengine/archive
 }
