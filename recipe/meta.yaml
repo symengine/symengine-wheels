@@ -9,7 +9,7 @@ source:
   sha256: 0ecccfe5a09b25b6640afca12de62062bdb60ed2712d6c16cc47fc1ba1e851ac
 
 build:
-  number: 1
+  number: 2
   skip: true        # [win and not py>=35]
 
 requirements:
@@ -19,12 +19,20 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - symengine     0.3.0
+    - gmp           # [unix]
+    - mpir          # [win]
+    - mpfr
+    - mpc
     - python
     - cython
     - setuptools
   run:
     - symengine     0.3.0
     - python
+    - gmp           # [unix]
+    - mpir          # [win]
+    - mpfr
+    - mpc
 
 test:
   requires:
