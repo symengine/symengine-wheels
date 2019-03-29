@@ -38,7 +38,7 @@ function install_llvm {
         curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
         bash $MINICONDA_FILE -b
         source /Users/travis/miniconda3/bin/activate root
-        conda config --add channels conda-forge
+        conda config --add channels conda-forge/label/cf201901
         conda config --set show_channel_urls true
         conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
         sudo rsync -av `pwd`/llvm/ $BUILD_PREFIX/
