@@ -41,7 +41,10 @@ function install_llvm {
         conda config --add channels conda-forge/label/cf201901
         conda config --set show_channel_urls true
         conda create -y -q -p `pwd`/llvm llvmdev=5.0.0
-        sudo mv `pwd`/llvm/* $BUILD_PREFIX/
+        for c in bin lib share include; do
+            mkdir -p $BUILD_PREFIX/$c
+            sudo rsync -av `pwd`/llvm/$c/ $BUILD_PREFIX/$c/
+        done
         source /Users/travis/miniconda3/bin/deactivate
     else
         yum install xz -y
