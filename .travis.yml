@@ -2,7 +2,7 @@ env:
   global:
     - REPO_DIR=symengine
     # Commit from your-project that you want to build
-    - BUILD_COMMIT=c97afd8796a4b8df7c6a34e143942a442c853337
+    - BUILD_COMMIT=master
     # pip dependencies to _build_ your project
     - BUILD_DEPENDS="Cython"
     # pip dependencies to _test_ your project.  Include any dependencies

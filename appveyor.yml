@@ -41,6 +41,8 @@ environment:
 install:
   - cmd: echo "Using cmd"
 
+  - set BUILD_COMMIT=master
+
   # Getting build commit from the tag
   - if [%APPVEYOR_REPO_TAG%] == [true] set BUILD_COMMIT=%APPVEYOR_REPO_TAG_NAME%
 
