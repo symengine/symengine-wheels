@@ -18,7 +18,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
   host:
-    - symengine     0.3.0
+    - symengine     {{ ".".join(version.split(".")[:2]) }}
     - gmp           # [unix]
     - mpir          # [win]
     - mpfr
@@ -28,7 +28,7 @@ requirements:
     - cython
     - setuptools
   run:
-    - symengine     0.3.0
+    - {{ pin_compatible("symengine", max_pin="x.x") }}
     - python
     - gmp           # [unix]
     - mpir          # [win]
