@@ -102,7 +102,7 @@ deploy:
   description: 'Release to upload the built wheels'
   provider: GitHub
   auth_token:
-    secure: c2HcT+3x1tRkFHATBUMZrw==
+    secure: kDd1fqXqnsBXe0JEowZH0td99P+R9j0OQwv2lDrol5R3P5+vHpWBkYEo8tVap7LH
   artifact: wheels
   draft: false
   prerelease: false
