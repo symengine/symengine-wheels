@@ -7,7 +7,7 @@
 # Builds version specified in BUILD_COMMIT variable
 # To chose version to build, edit value of BUILD_COMMIT
 
-image: Visual Studio 2017
+image: Visual Studio 2015
 
 environment:
     global:
@@ -65,8 +65,6 @@ build_script:
 
   # Fix the wheel
   - set dep_dir=%CONDA_INSTALL_LOCN%\envs\symengine\Library\bin
-  - mkdir dist2
-  - xcopy dist dist2
   - python ..\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\symengine.dll
   # Install the wheel
   - cd dist
@@ -87,9 +85,6 @@ artifacts:
   - path: symengine\dist\*
     name: wheels
 
-  - path: symengine\dist2\*
-    name: wheels2
-
 deploy:
   description: 'Release to upload the built wheels'
   provider: GitHub
@@ -101,5 +96,5 @@ deploy:
   on:
     appveyor_repo_tag: true
 
-on_finish:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#on_finish:
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
