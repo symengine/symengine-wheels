@@ -66,7 +66,7 @@ build_script:
   # Fix the wheel
   - set dep_dir=%CONDA_INSTALL_LOCN%\envs\symengine\Library\bin
   - mkdir dist2
-  - cp dist\* dist2\
+  - xcopy dist dist2
   - python ..\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\symengine.dll
   # Install the wheel
   - cd dist
