@@ -23,6 +23,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
+    - libflint         # [unix]
     - python
     - cython
     - setuptools
@@ -33,6 +34,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
+    - libflint         # [unix]
 
 test:
   requires:
@@ -40,8 +42,6 @@ test:
     - sympy
   imports:
     - symengine
-  commands:
-    - python -c $'import symengine;\nif not symengine.test():\n raise Exception("Tests failed")'    # [unix]
 
 about:
   home: https://github.com/symengine/symengine.py
