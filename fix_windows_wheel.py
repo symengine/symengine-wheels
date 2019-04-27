@@ -17,12 +17,6 @@ def add_library(lib_paths, dist_path='dist'):
             for lib_path in lib_paths:
                 shutil.copy2(lib_path, pjoin('symengine', 'lib'))
 
-        dirpath = tempfile.mkdtemp()
-        os.chdir(dirpath)
-        subprocess.check_call(["7z", "x", fname])
-        subprocess.check_call(["7z", "a", fname+".zip"])
-        subprocess.check_call(["mv", fname+".zip", fname])
-
 def main():
     args = list(sys.argv)
     args.pop(0)
