@@ -51,7 +51,8 @@ install:
   - python -m pip install --upgrade pip
   - pip install wheel
   - git submodule update --init
-  - pip install cython delocate==0.7.4 numpy
+  - pip install cython numpy
+  - pip install git+https://github.com/isuruf/delocate.git@separator
 
   - call install_cpp_deps_using_conda.cmd
   - echo %PATH%
