@@ -6,7 +6,7 @@ export MAKEFLAGS="-j32"
 LLVM_VERSION=8.0.1
 mkdir -p /deps
 cd /deps
-LICENSE_DIR=/io/llvm-$LLVM_VERSION/share/doc/llvm
+LICENSE_DIR=/install/usr/local/share/doc/llvm
 mkdir -p $LICENSE_DIR
 
 yum install -y git yum libxml2-devel xz
@@ -16,9 +16,9 @@ yum install -y git yum libxml2-devel xz
 export PATH="/opt/python/cp37-cp37m/lib/python3.7/site-packages/cmake/data/bin/:${PATH}"
 
 # LLVM for pocl
-curl -L -O https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz
-unxz llvm-${LLVM_VERSION}.src.tar.xz
-tar -xf llvm-${LLVM_VERSION}.src.tar
+#curl -L -O https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-${LLVM_VERSION}.src.tar.xz
+#unxz llvm-${LLVM_VERSION}.src.tar.xz
+#tar -xf llvm-${LLVM_VERSION}.src.tar
 pushd llvm-${LLVM_VERSION}.src
 mkdir -p build
 pushd build
@@ -40,15 +40,15 @@ cmake -DPYTHON_EXECUTABLE=/opt/python/cp37-cp37m/bin/python \
 
 make
 make install
-make install DESTDIR=/io/llvm-$LLVM_VERSION
+make install DESTDIR=/install/llvm-$LLVM_VERSION
 popd
 cp LICENSE.TXT $LICENSE_DIR/LLVM_LICENSE.txt
 popd
 
 # clang for pocl
-curl -L -O https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/cfe-${LLVM_VERSION}.src.tar.xz
-unxz cfe-${LLVM_VERSION}.src.tar.xz
-tar -xf cfe-${LLVM_VERSION}.src.tar
+#curl -L -O https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/cfe-${LLVM_VERSION}.src.tar.xz
+#unxz cfe-${LLVM_VERSION}.src.tar.xz
+#tar -xf cfe-${LLVM_VERSION}.src.tar
 pushd cfe-${LLVM_VERSION}.src
 mkdir -p build
 pushd build
@@ -67,10 +67,15 @@ cmake \
     ..
 make
 make install
-make install DESTDIR=/io/llvm-$LLVM_VERSION
+make install DESTDIR=/install/llvm-$VERSION
 popd
 cp LICENSE.TXT $LICENSE_DIR/clang_LICENSE.txt
 popd
 
-pushd /io/
-tar -czvf llvm-$LLVM_VERSION-manylinux1_x86-64.tar.gz pocl-$LLVM_VERSION
+pushd /install/llvm-$VERSION
+mv usr/local/* .
+rm -rf usr
+popd
+
+pushd /io
+tar -czvf llvm-$LLVM_VERSION-manylinux1_x86-64.tar.gz /install/llvm-$VERSION/pocl-$LLVM_VERSION
