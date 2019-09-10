@@ -17,6 +17,8 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - make   # [unix]
+    - ninja  # [win]
   host:
     - symengine     {{ ".".join(version.split(".")[:2]) }}
     - gmp           # [unix]
