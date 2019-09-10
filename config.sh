@@ -48,19 +48,19 @@ function install_llvm {
         source /Users/travis/miniconda3/bin/deactivate
     else
         yum install xz -y
-        mkdir llvm-5.0.1 && cd llvm-5.0.1
-        fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-5.0.1-manylinux1_x86_64.tar.gz
+        mkdir llvm-8.0.1 && cd llvm-8.0.1
+        fetch_unpack https://github.com/isuruf/isuruf.github.io/releases/download/v1.0/llvm-8.0.1-manylinux1_x86_64.tar.gz
         cd ..
-        local archive_fname=llvm-5.0.1.src.tar.xz
+        local archive_fname=llvm-8.0.1.src.tar.xz
         local arch_sdir="${ARCHIVE_SDIR:-archives}"
         # Make the archive directory in case it doesn't exist
         mkdir -p $arch_sdir
         local out_archive="${arch_sdir}/${archive_fname}"
         # Fetch the archive if it does not exist
         if [ ! -f "$out_archive" ]; then
-            curl -L http://releases.llvm.org/5.0.1/llvm-5.0.1.src.tar.xz > $out_archive
+            curl -L http://releases.llvm.org/8.0.1/llvm-8.0.1.src.tar.xz > $out_archive
         fi
-        rsync -av llvm-5.0.1/* $BUILD_PREFIX
+        rsync -av llvm-8.0.1/* $BUILD_PREFIX
     fi
     touch llvm-stamp
 }
@@ -115,8 +115,8 @@ function pre_build {
     local symengine_version=`cat symengine/symengine_version.txt`
 
     build_gmp 6.1.2 https://gmplib.org/download/gmp
-    build_simple mpfr 3.1.5 https://ftp.gnu.org/gnu/mpfr
-    build_simple mpc 1.0.3 https://ftp.gnu.org/gnu/mpc/
+    build_simple mpfr 4.0.2 https://ftp.gnu.org/gnu/mpfr
+    build_simple mpc 1.1.0 https://ftp.gnu.org/gnu/mpc/
     install_llvm
     install_cmake
     build_symengine $symengine_version https://github.com/symengine/symengine/archive

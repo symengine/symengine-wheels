@@ -51,5 +51,5 @@ rm -rf usr
 popd
 
 pushd /install
-tar -czvf llvm-$LLVM_VERSION-manylinux1_x86-64.tar.gz llvm-$LLVM_VERSION
+tar -czvf llvm-$LLVM_VERSION-manylinux1_x86-64.tar.gz *
 mv llvm-$LLVM_VERSION-manylinux1_x86-64.tar.gz /io/
