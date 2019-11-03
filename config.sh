@@ -42,7 +42,6 @@ function install_llvm {
         conda config --set show_channel_urls true
         conda create -y -q -p `pwd`/llvm llvmdev=8.0.1
         conda remove -y -q -p `pwd`/llvm libcxx --force
-        conda remove -y -q -p `pwd`/llvm libcxxabi --force
         for c in bin lib share include; do
             mkdir -p $BUILD_PREFIX/$c
             sudo rsync -av `pwd`/llvm/$c/ $BUILD_PREFIX/$c/
