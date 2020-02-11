@@ -73,6 +73,7 @@ before_install:
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh
   - set -x && before_install && set +x
+  - export PATH="`dirname $PYTHON_EXE`:$PATH"
 
 install:
   # Maybe get and clean and patch source
