@@ -21,8 +21,13 @@ function build_gmp {
        return;
     fi
     fetch_unpack $url/gmp-${version}.tar.bz2
+    if [ -n "$IS_OSX" ]; then
+	GMP_HOST="x86_64-apple-darwin"
+    else
+        GMP_HOST="x86_64-pc-linux-gnu"
+    fi
     (cd gmp-${version} \
-        && ./configure --prefix=$BUILD_PREFIX --enable-fat --enable-shared \
+        && ./configure --prefix=$BUILD_PREFIX --enable-fat --enable-shared --host=$GMP_HOST \
         && make \
         && make install)
     touch gmp-stamp
@@ -115,7 +120,7 @@ function pre_build {
     fi
     local symengine_version=`cat symengine/symengine_version.txt`
 
-    build_gmp 6.1.2 https://gmplib.org/download/gmp
+    build_gmp 6.2.0 https://gmplib.org/download/gmp
     build_simple mpfr 4.0.2 https://ftp.gnu.org/gnu/mpfr
     build_simple mpc 1.1.0 https://ftp.gnu.org/gnu/mpc/
     install_llvm

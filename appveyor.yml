@@ -33,6 +33,13 @@ environment:
       CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
 
 
+    - PYTHON: "C:\\Python38-x64"
+      PYTHON_VERSION: "3.8.x" # currently 3.6.0
+      PYTHON_ARCH: "64"
+      # conda is only used for downloading C/C++ packages
+      CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+
+
 install:
   - cmd: echo "Using cmd"
 
