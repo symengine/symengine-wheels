@@ -70,10 +70,10 @@ matrix:
 before_install:
   - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
   - export TEST_DEPENDS="${TEST_DEPENDS} numpy==${TEST_NPY_VERSION}"
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/Library/Frameworks/Python.framework/Versions/$MB_PYTHON_VERSION/bin:$PATH"; fi
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh
   - set -x && before_install && set +x
-  - export PATH="`dirname $PYTHON_EXE`:$PATH"
 
 install:
   # Maybe get and clean and patch source
