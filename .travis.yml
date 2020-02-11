@@ -26,6 +26,10 @@ matrix:
     # Exclude the default Python 3.5 build
     - python: 3.5
   include:
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=2.7
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
@@ -49,10 +53,6 @@ matrix:
     - os: osx
       language: generic
       env:
-        - MB_PYTHON_VERSION=2.7
-    - os: osx
-      language: generic
-      env:
         - MB_PYTHON_VERSION=3.5
     - os: osx
       language: generic
@@ -72,7 +72,7 @@ before_install:
   - export TEST_DEPENDS="${TEST_DEPENDS} numpy==${TEST_NPY_VERSION}"
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh
-  - before_install
+  - set -x && before_install && set +x
 
 install:
   # Maybe get and clean and patch source
