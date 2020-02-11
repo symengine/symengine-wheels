@@ -12,9 +12,9 @@ if [[ "$1" == "" ]]; then
 fi
 
 declare -a arr=(
-    "-cp27-cp27m-macosx_10_9_x86_64.macosx_10_10_x86_64.whl"
-	"-cp36-cp36m-macosx_10_9_x86_64.macosx_10_10_x86_64.whl"
-	"-cp37-cp37m-macosx_10_9_x86_64.macosx_10_10_x86_64.whl"
+        "-cp27-cp27m-macosx_10_9_x86_64.whl"
+	"-cp36-cp36m-macosx_10_9_x86_64.whl"
+	"-cp37-cp37m-macosx_10_9_x86_64.whl"
 	"-cp38-cp38-macosx_10_9_x86_64.whl"
 	"-cp27-cp27m-manylinux1_x86_64.whl"
 	"-cp27-cp27mu-manylinux1_x86_64.whl"

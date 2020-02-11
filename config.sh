@@ -151,7 +151,8 @@ if [ -n "$IS_OSX" ]; then
         for wheel in $wheels
         do
             se_file_name=$(basename $wheel)
-            se_file_name="${se_file_name/macosx_10_6_intel./macosx_10_9_x86_64.macosx_10_10_x86_64.}"
+            se_file_name="${se_file_name/macosx_10_9_intel./macosx_10_9_x86_64.}"
+            se_file_name="${se_file_name/macosx_10_6_intel./macosx_10_9_x86_64.}"
             mv $wheel $wheelhouse/$se_file_name
         done
     }
