@@ -20,11 +20,7 @@ python: 3.7
 sudo: required
 dist: xenial
 services: docker
-
 matrix:
-  exclude:
-    # Exclude the default Python 3.5 build
-    - python: 3.7
   include:
     - os: osx
       language: generic
