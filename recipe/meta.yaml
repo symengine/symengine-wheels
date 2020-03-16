@@ -1,4 +1,4 @@
-{% set version = "0.6.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: python-symengine
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
-  sha256: ee98ca899f976022ffd3a32ed682ae1bfbee37f8d506d5dd5f0701a89bb3164e
+  sha256: 8da65b0a693d19b0030461c655a223d20a9164d7d04dd1317c41d6988dc1ec96
 
 build:
   number: 0
-  skip: true        # [win and not py>=35]
+  skip: true  # [win and not py>=35]
 
 requirements:
   build:
@@ -49,7 +49,7 @@ about:
   home: https://github.com/symengine/symengine.py
   license: MIT
   license_file: LICENSE
-  summary: 'Python wrappers for SymEngine, a fast symbolic manipulation library, written in C++'
+  summary: Python wrappers for SymEngine, a fast symbolic manipulation library, written in C++
 
 extra:
   recipe-maintainers:
