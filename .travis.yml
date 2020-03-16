@@ -18,13 +18,13 @@ language: python
 # with.  This is set with the MB_PYTHON_VERSION variable.
 python: 3.7
 sudo: required
-dist: trusty
+dist: xenial
 services: docker
 
 matrix:
   exclude:
     # Exclude the default Python 3.5 build
-    - python: 3.5
+    - python: 3.7
   include:
     - os: osx
       language: generic
