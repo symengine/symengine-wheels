@@ -20,6 +20,8 @@ docker_image:
 - condaforge/linux-anvil-aarch64
 gmp:
 - '6'
+libflint:
+- '2.6'
 mpfr:
 - '4'
 pin_run_as_build:
