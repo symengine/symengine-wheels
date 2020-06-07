@@ -27,7 +27,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
-    - libflint         # [unix]
+    - libflint
     - python
     - cython
     - setuptools
@@ -38,7 +38,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
-    - libflint         # [unix]
+    - libflint
 
 test:
   requires:
