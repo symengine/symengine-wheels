@@ -11,7 +11,7 @@ source:
     - gh341.patch
 
 build:
-  number: 2
+  number: 3
   skip: true  # [win and not py>=35]
 
 requirements:
