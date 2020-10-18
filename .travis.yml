@@ -8,8 +8,7 @@ env:
     # pip dependencies to _test_ your project.  Include any dependencies
     # that you need, that are also specified in BUILD_DEPENDS, this will be
     # a separate install.
-    - TEST_DEPENDS="pytest sympy==1.0"
-    - TEST_NPY_VERSION="1.14.*"
+    - TEST_DEPENDS="pytest sympy==1.6.2"
     - PLAT=x86_64
     - UNICODE_WIDTH=32
 
@@ -25,12 +24,15 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
+        - TEST_NPY_VERSION="1.18.*"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.7
+        - TEST_NPY_VERSION="1.18.*"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.8
+        - TEST_NPY_VERSION="1.18.*"
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.9
@@ -38,14 +40,17 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
+        - TEST_NPY_VERSION="1.18.*"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.7
+        - TEST_NPY_VERSION="1.18.*"
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.8
+        - TEST_NPY_VERSION="1.18.*"
     - os: osx
       language: generic
       env:
@@ -53,7 +58,7 @@ matrix:
 
 before_install:
   - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
-  - export TEST_DEPENDS="${TEST_DEPENDS} numpy==${TEST_NPY_VERSION}"
+  - if [ ! -z ${TEST_NPY_VERSION} ]; then export TEST_DEPENDS="${TEST_DEPENDS} numpy==${TEST_NPY_VERSION}"; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export PATH="/Library/Frameworks/Python.framework/Versions/$MB_PYTHON_VERSION/bin:$PATH"; fi
   - source multibuild/common_utils.sh
   - source multibuild/travis_steps.sh

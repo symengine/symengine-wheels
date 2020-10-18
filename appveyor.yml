@@ -19,25 +19,28 @@ environment:
       PYTHON_ARCH: "64"
       # conda is only used for downloading C/C++ packages
       CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+      PIP_DEPS: "cython numpy"
 
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7.x" # currently 3.6.0
       PYTHON_ARCH: "64"
       # conda is only used for downloading C/C++ packages
       CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
-
+      PIP_DEPS: "cython numpy"
 
     - PYTHON: "C:\\Python38-x64"
       PYTHON_VERSION: "3.8.x" # currently 3.6.0
       PYTHON_ARCH: "64"
       # conda is only used for downloading C/C++ packages
       CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+      PIP_DEPS: "cython numpy"
 
     - PYTHON: "C:\\Python39-x64"
       PYTHON_VERSION: "3.9.x" # currently 3.9.0
       PYTHON_ARCH: "64"
       # conda is only used for downloading C/C++ packages
       CONDA_INSTALL_LOCN: C:\\Miniconda36-x64
+      PIP_DEPS: "cython"
 
 
 install:
@@ -58,7 +61,7 @@ install:
   - python -m pip install --upgrade pip
   - pip install wheel
   - git submodule update --init
-  - pip install cython numpy
+  - pip install %PIP_DEPS%
   - pip install git+https://github.com/isuruf/delocate.git@separator
 
   - call install_cpp_deps_using_conda.cmd
