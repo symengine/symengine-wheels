@@ -10,9 +10,6 @@
 image: Visual Studio 2015
 
 environment:
-    global:
-      BUILD_COMMIT: master
-
     matrix:
     - PYTHON: "C:\\Python36-x64"
       PYTHON_VERSION: "3.6.x" # currently 3.6.0
@@ -71,7 +68,7 @@ build_script:
   # Build the wheel
   - cd symengine
   - git fetch origin
-  - git checkout %BUILD_COMMIT%
+  - if [%APPVEYOR_REPO_TAG%] == [true] git checkout %BUILD_COMMIT%
   - python setup.py bdist_wheel build_ext --symengine-dir=%CONDA_INSTALL_LOCN%\envs\symengine\Library\
 
   # Fix the wheel
