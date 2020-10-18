@@ -22,21 +22,6 @@ dist: xenial
 services: docker
 matrix:
   include:
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=2.7
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - UPLOAD_SDIST=yes
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - UNICODE_WIDTH=16
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.5
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
@@ -46,10 +31,9 @@ matrix:
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.8
-    - os: osx
-      language: generic
+    - os: linux
       env:
-        - MB_PYTHON_VERSION=3.5
+        - MB_PYTHON_VERSION=3.9
     - os: osx
       language: generic
       env:
@@ -62,6 +46,10 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.8
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.9
 
 before_install:
   - if [ ! -z ${TRAVIS_TAG} ]; then export BUILD_COMMIT=${TRAVIS_TAG}; fi
