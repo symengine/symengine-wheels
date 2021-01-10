@@ -1,7 +1,9 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '8'
+- '9'
+cdt_name:
+- cos7
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -9,9 +11,9 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '8'
+- '9'
 docker_image:
-- condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-ppc64le
 gmp:
 - '6'
 mpfr:
@@ -25,7 +27,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.8.* *_cpython
+- 3.7.* *_73_pypy
 target_platform:
 - linux-ppc64le
 zip_keys:
