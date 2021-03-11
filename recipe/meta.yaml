@@ -9,6 +9,7 @@ source:
     sha256: 8da65b0a693d19b0030461c655a223d20a9164d7d04dd1317c41d6988dc1ec96
     patches:
       - gh341.patch
+      - debug.diff
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.6.0/symengine-0.6.0.tar.gz
