@@ -9,6 +9,10 @@ if [[ "$target_platform" == linux-* ]]; then
     export LDFLAGS="$LDFLAGS -static-libstdc++"
 fi
 
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+    CMAKE_ARGS="${CMAKE_ARGS} -DBUILD_TESTS=no"
+fi
+
 cmake ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
