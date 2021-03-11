@@ -55,20 +55,10 @@ else
         --suppress-variables ${EXTRA_CB_OPTIONS:-} \
         --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
     endgroup "Running conda build"
-<<<<<<< HEAD
 
     if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
         startgroup "Uploading packages"
         upload_package  "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
-=======
-    startgroup "Validating outputs"
-    validate_recipe_outputs "${FEEDSTOCK_NAME}"
-    endgroup "Validating outputs"
-
-    if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
-        startgroup "Uploading packages"
-        upload_package --validate --feedstock-name="${FEEDSTOCK_NAME}"  "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
->>>>>>> f61a4f7ccc12578b4ba248c366e3e2e48ad98edc
         endgroup "Uploading packages"
     fi
 fi

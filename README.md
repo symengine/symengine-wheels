@@ -1,4 +1,4 @@
-About python-symengine
+About symengine-wheels
 ======================
 
 Home: https://github.com/symengine/symengine.py
@@ -21,27 +21,27 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-python--symengine-green.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/python-symengine.svg)](https://anaconda.org/conda-forge/python-symengine) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-symengine--wheels-green.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) |
 
-Installing python-symengine
+Installing symengine-wheels
 ===========================
 
-Installing `python-symengine` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `symengine-wheels` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `python-symengine` can be installed with:
+Once the `conda-forge` channel has been enabled, `symengine-wheels` can be installed with:
 
 ```
-conda install python-symengine
+conda install symengine-wheels
 ```
 
-It is possible to list all of the versions of `python-symengine` available on your platform with:
+It is possible to list all of the versions of `symengine-wheels` available on your platform with:
 
 ```
-conda search python-symengine --channel conda-forge
+conda search symengine-wheels --channel conda-forge
 ```
 
 
@@ -83,17 +83,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating python-symengine-feedstock
+Updating symengine-wheels-feedstock
 ===================================
 
-If you would like to improve the python-symengine recipe or build a new
+If you would like to improve the symengine-wheels recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/python-symengine-feedstock are
+Note that all branches in the conda-forge/symengine-wheels-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
