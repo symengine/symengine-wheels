@@ -64,9 +64,9 @@ pushd python
 popd
 
 for whl in python/fixed_wheels/*.whl; do
-  if [[ "$build_platform" == "osx-*" ]]; then
+  if [[ "$build_platform" == "osx-"* ]]; then
     WHL_DEST=$SRC_DIR/build_artifacts/pypi_wheels
-  elif [[ "$build_platform" == "linux-*" ]]; then
+  elif [[ "$build_platform" == "linux-"* ]]; then
     WHL_DEST=/home/conda/feedstock_root/build_artifacts/pypi_wheels
   fi
   mkdir -p $WHL_DEST
