@@ -1,0 +1,25 @@
+From 1e0fb6eadeda675f6428cd85894180dacfedda11 Mon Sep 17 00:00:00 2001
+From: Liam Keegan <liam@keegan.ch>
+Date: Wed, 23 Sep 2020 17:24:57 +0200
+Subject: [PATCH] use DeadCodeEliminationPass instead of
+ DeadInstEliminationPass
+
+  - DeadInstEliminationPass has been removed from llvm trunk
+  - see https://reviews.llvm.org/D87933
+---
+ symengine/llvm_double.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/symengine/llvm_double.cpp b/symengine/llvm_double.cpp
+index fbe9ee401..d61de49a5 100644
+--- a/symengine/llvm_double.cpp
++++ b/symengine/llvm_double.cpp
+@@ -146,7 +146,7 @@ std::vector<llvm::Pass *> LLVMVisitor::create_default_passes(int optlevel)
+ #else
+     passes.push_back(llvm::createInstructionCombiningPass(optlevel > 1));
+ #endif
+-    passes.push_back(llvm::createDeadInstEliminationPass());
++    passes.push_back(llvm::createDeadCodeEliminationPass());
+     passes.push_back(llvm::createPromoteMemoryToRegisterPass());
+     passes.push_back(llvm::createReassociatePass());
+     passes.push_back(llvm::createGVNPass());

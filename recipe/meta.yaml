@@ -14,6 +14,8 @@ source:
   - url: https://github.com/symengine/symengine/releases/download/v0.6.0/symengine-0.6.0.tar.gz
     sha256: 4d2caa86c03eaaa8ed004084d02f87b5c51b6229f8ba70d161227e22d6302f0a
     folder: cxx
+    patches:
+      - gh1691.patch
 
 build:
   number: 4
