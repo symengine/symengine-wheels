@@ -1,7 +1,7 @@
 {% set version = "0.6.1" %}
 
 package:
-  name: python-symengine
+  name: symengine-wheels
   version: {{ version }}
 
 source:
@@ -11,7 +11,7 @@ source:
       - gh341.patch
     folder: python
 
-  - url: https://github.com/symengine/symengine/releases/download/v{{ version }}/symengine-{{ version }}.tar.gz
+  - url: https://github.com/symengine/symengine/releases/download/v0.6.0/symengine-0.6.0.tar.gz
     sha256: 4d2caa86c03eaaa8ed004084d02f87b5c51b6229f8ba70d161227e22d6302f0a
     folder: cxx
 
@@ -25,6 +25,11 @@ requirements:
     - {{ compiler('cxx') }}
     - make   # [unix]
     - ninja  # [win]
+    - unzip           # [unix]
+    - patchelf        # [linux]
+    - python          # [build_platform != target_platform]
+    - cython          # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}      # [build_platform != target_platform]
   host:
     - gmp           # [unix]
     - mpir          # [win]
@@ -36,15 +41,10 @@ requirements:
     - python
     - cython
     - setuptools
+    - auditwheel      # [linux]
+    - delocate        # [osx]
   run:
     - python
-
-test:
-  requires:
-    - pytest
-    - sympy
-  imports:
-    - symengine
 
 about:
   home: https://github.com/symengine/symengine.py
