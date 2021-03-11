@@ -65,10 +65,12 @@ popd
 
 for whl in python/fixed_wheels/*.whl; do
   if [[ "$build_platform" == "osx-*" ]]; then
-    cp $whl /Users/runner/miniforge3/conda-bld/
+    WHL_DEST=$SRC_DIR/build_artifacts/pypi_wheels
   elif [[ "$build_platform" == "linux-*" ]]; then
-    cp $whl /home/conda/feedstock_root/build_artifacts/
+    WHL_DEST=/home/conda/feedstock_root/build_artifacts/pypi_wheels
   fi
+  mkdir -p $WHL_DEST
+  cp $whl $WHL_DEST
 done
 
 for whl in python/fixed_wheels/*.whl; do
