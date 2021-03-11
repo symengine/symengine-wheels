@@ -31,19 +31,19 @@ requirements:
     - python          # [build_platform != target_platform]
     - cython          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
+    - auditwheel      # [linux]
+    - delocate        # [osx]
   host:
     - gmp           # [unix]
     - mpir          # [win]
     - mpfr
     - mpc
     - libflint
-    - llvmdev  9.*     # [unix]
+    - llvmdev          # [unix]
     - llvmdev  8.*     # [win]
     - python
     - cython
     - setuptools
-    - auditwheel      # [linux]
-    - delocate        # [osx]
   run:
     - python
 
