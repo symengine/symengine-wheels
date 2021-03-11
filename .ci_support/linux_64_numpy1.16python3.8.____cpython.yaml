@@ -18,6 +18,8 @@ gmp:
 - '6'
 mpfr:
 - '4'
+numpy:
+- '1.16'
 pin_run_as_build:
   gmp:
     max_pin: x
@@ -35,3 +37,5 @@ zip_keys:
   - cxx_compiler_version
 - - cdt_name
   - docker_image
+- - python
+  - numpy

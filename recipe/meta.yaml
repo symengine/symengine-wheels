@@ -53,6 +53,12 @@ requirements:
   run:
     - python
 
+test:
+  requires:
+    - pytest
+    - sympy
+    - numpy
+
 about:
   home: https://github.com/symengine/symengine.py
   license: MIT

@@ -61,3 +61,7 @@ for whl in python/fixed_wheels/*.whl; do
     cp $whl /home/conda/feedstock_root/build_artifacts/
   fi
 done
+
+for whl in python/fixed_wheels/*.whl; do
+   $PYTHON -m pip install $whl
+done
