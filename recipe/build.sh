@@ -21,7 +21,7 @@ cmake \
     -DWITH_FLINT=yes \
     -DWITH_LLVM=yes \
     -DBUILD_FOR_DISTRIBUTION=yes \
-    -DBUILD_SHARED_LIBS=yes \
+    -DBUILD_SHARED_LIBS=no \
     ..
 
 cmake --build . -- -j${CPU_COUNT}
@@ -32,11 +32,25 @@ ctest
 popd
 
 pushd python
-  python setup.py build_ext -i --symengine-dir=$PREFIX bdist_wheel
-  if [[ "$target_platform" == linux-* ]]; then
-    auditwheel repair dist/*.whl -w $PWD/fixed_wheels
+  python setup.py bdist_wheel
+  if [[ "$target_platform" == linux-64 ]]; then
+    rm -rf $PREFIX/lib/libstdc++.*
+    rm -rf $PREFIX/lib/libgcc*
+    auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2010_x86_64
+  elif [[ "$target_platform" == linux-* ]]; then
+    rm -rf $PREFIX/lib/libstdc++.*
+    rm -rf $PREFIX/lib/libgcc*
+    auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
-    rm $PREFIX/lib/libc++.*
+    rm -rf $PREFIX/lib/libc++.*
     delocate-wheel -w fixed_wheels -v dist/*.whl
   fi
 popd
+
+for whl in python/fixed_wheels/*.whl; do
+  if [[ "$build_platform" == "osx-*" ]]; then
+    cp $whl /Users/runner/miniforge3/conda-bld/
+  elif [[ "$build_platform" == "linux-*" ]]; then
+    cp $whl /home/conda/feedstock_root/build_artifacts/
+  fi
+done

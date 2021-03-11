@@ -44,9 +44,19 @@ make_build_number ./ ./recipe ./.ci_support/${CONFIG}.yaml
 
 conda $BUILD_CMD ./recipe -m ./.ci_support/${CONFIG}.yaml --suppress-variables --clobber-file ./.ci_support/clobber_${CONFIG}.yaml ${EXTRA_CB_OPTIONS:-}
 endgroup "Running conda build"
+<<<<<<< HEAD
 
 if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
   startgroup "Uploading packages"
   upload_package  ./ ./recipe ./.ci_support/${CONFIG}.yaml
+=======
+startgroup "Validating outputs"
+validate_recipe_outputs "${FEEDSTOCK_NAME}"
+endgroup "Validating outputs"
+
+if [[ "${UPLOAD_PACKAGES}" != "False" ]]; then
+  startgroup "Uploading packages"
+  upload_package --validate --feedstock-name="${FEEDSTOCK_NAME}" ./ ./recipe ./.ci_support/${CONFIG}.yaml
+>>>>>>> f61a4f7ccc12578b4ba248c366e3e2e48ad98edc
   endgroup "Uploading packages"
 fi
