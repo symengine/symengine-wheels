@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 pushd cxx
 
 mkdir build
