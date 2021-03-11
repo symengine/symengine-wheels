@@ -48,6 +48,7 @@ requirements:
     - python
     - cython
     - setuptools
+    - pip
   run:
     - python
 
