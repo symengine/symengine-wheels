@@ -36,6 +36,7 @@ pushd python
   if [[ "$target_platform" == linux-* ]]; then
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels
   else
+    rm $PREFIX/lib/libc++.*
     delocate-wheel -w fixed_wheels -v dist/*.whl
   fi
 popd

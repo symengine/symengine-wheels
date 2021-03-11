@@ -1,2 +1,8 @@
-provider: {linux_aarch64: default, linux_ppc64le: default, win: azure}
-conda_forge_output_validation: true
+provider:
+  linux_64: github_actions
+  osx_64: github_actions
+  win_64: github_actions
+build_platform:
+  linux_aarch64: linux_64
+  linux_ppc64le: linux_64
+  osx_arm64: osx_64
