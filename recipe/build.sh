@@ -32,7 +32,7 @@ ctest
 popd
 
 pushd python
-  python setup.py bdist_wheel
+  $PYTHON setup.py bdist_wheel
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
