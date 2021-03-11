@@ -5,14 +5,18 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
-  sha256: 8da65b0a693d19b0030461c655a223d20a9164d7d04dd1317c41d6988dc1ec96
-  patches:
-    - gh341.patch
+  - url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
+    sha256: 8da65b0a693d19b0030461c655a223d20a9164d7d04dd1317c41d6988dc1ec96
+    patches:
+      - gh341.patch
+    folder: python
+
+  - url: https://github.com/symengine/symengine/releases/download/v{{ version }}/symengine-{{ version }}.tar.gz
+    sha256: 4d2caa86c03eaaa8ed004084d02f87b5c51b6229f8ba70d161227e22d6302f0a
+    folder: cxx
 
 build:
-  number: 3
-  skip: true  # [win and not py>=35]
+  number: 4
 
 requirements:
   build:
@@ -22,23 +26,18 @@ requirements:
     - make   # [unix]
     - ninja  # [win]
   host:
-    - symengine     {{ ".".join(version.split(".")[:2]) }}
     - gmp           # [unix]
     - mpir          # [win]
     - mpfr
     - mpc
     - libflint
+    - llvmdev  9.*     # [unix]
+    - llvmdev  8.*     # [win]
     - python
     - cython
     - setuptools
   run:
-    - {{ pin_compatible("symengine", max_pin="x.x") }}
     - python
-    - gmp           # [unix]
-    - mpir          # [win]
-    - mpfr
-    - mpc
-    - libflint
 
 test:
   requires:
