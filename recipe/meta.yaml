@@ -47,6 +47,7 @@ requirements:
     - llvmdev  8.*     # [win]
     - python
     - setuptools
+    - cython
     - pip
   run:
     - python
