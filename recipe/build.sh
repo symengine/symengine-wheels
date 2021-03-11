@@ -39,7 +39,7 @@ ctest
 popd
 
 pushd python
-  $PYTHON setup.py bdist_wheel build_ext -i ${CMAKE_ARGS}
+  $PYTHON setup.py bdist_wheel build_ext -i $(echo ${CMAKE_ARGS} | sed 's/-D/-D /g')
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
