@@ -15,6 +15,8 @@ source:
     sha256: 4d2caa86c03eaaa8ed004084d02f87b5c51b6229f8ba70d161227e22d6302f0a
     folder: cxx
     patches:
+      - gh1654.patch
+      - gh1678.patch
       - gh1691.patch
 
 build:

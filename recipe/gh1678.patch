@@ -1,0 +1,23 @@
+From e906774870c213fce04a51820d5854e5961bc28d Mon Sep 17 00:00:00 2001
+From: Liam Keegan <liam@keegan.ch>
+Date: Fri, 21 Aug 2020 11:48:11 +0200
+Subject: [PATCH] Construct IRBuilder directly instead of using copy
+ constructor   - copy constructor is deleted in llvm 11
+
+---
+ symengine/llvm_double.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/symengine/llvm_double.cpp b/symengine/llvm_double.cpp
+index 0ea279bfe..fbe9ee401 100644
+--- a/symengine/llvm_double.cpp
++++ b/symengine/llvm_double.cpp
+@@ -218,7 +218,7 @@ void LLVMVisitor::init(const vec_basic &inputs, const vec_basic &outputs,
+     // Create a basic block builder with default parameters.  The builder
+     // will
+     // automatically append instructions to the basic block `BB'.
+-    llvm::IRBuilder<> _builder = llvm::IRBuilder<>(BB);
++    llvm::IRBuilder<> _builder(BB);
+     builder = reinterpret_cast<IRBuilder *>(&_builder);
+     builder->SetInsertPoint(BB);
+     auto fmf = llvm::FastMathFlags();
