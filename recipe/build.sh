@@ -9,7 +9,7 @@ if [[ "$target_platform" == linux-* ]]; then
     export LDFLAGS="$LDFLAGS -static-libstdc++"
 fi
 
-cmake \
+cmake ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DCMAKE_INSTALL_LIBDIR=lib \
@@ -33,7 +33,7 @@ ctest
 popd
 
 pushd python
-  $PYTHON setup.py bdist_wheel
+  $PYTHON setup.py bdist_wheel build_ext -i ${CMAKE_ARGS}
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
