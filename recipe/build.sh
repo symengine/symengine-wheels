@@ -20,6 +20,7 @@ cmake \
     -DWITH_MPC=yes \
     -DWITH_FLINT=yes \
     -DWITH_LLVM=yes \
+    -DWITH_COTIRE=no \
     -DBUILD_FOR_DISTRIBUTION=yes \
     -DBUILD_SHARED_LIBS=no \
     ..
