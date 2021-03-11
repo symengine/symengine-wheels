@@ -41,7 +41,7 @@ popd
 pushd python
   PYTHON_ARGS="-D IGNORE_THIS=1"
   for ARG in $CMAKE_ARGS; do
-    if [[ "$ARG" == "-DCMAKE_"* ]]; then
+    if [[ "$ARG" == "-DCMAKE_"* ]] && [[ "$ARG" != *";"* ]]; then
       cmake_arg=$(echo $ARG | cut -d= -f1)
       cmake_arg=$(echo $cmake_arg| cut -dD -f2-)
       cmake_val=$(echo $ARG | cut -d= -f2-)
