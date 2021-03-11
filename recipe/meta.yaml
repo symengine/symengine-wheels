@@ -33,10 +33,10 @@ requirements:
     - unzip           # [unix]
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
-    - cython          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - auditwheel      # [linux]
     - delocate        # [osx]
+    - cython
   host:
     - gmp           # [unix]
     - mpir          # [win]
@@ -46,7 +46,6 @@ requirements:
     - llvmdev          # [unix]
     - llvmdev  8.*     # [win]
     - python
-    - cython
     - setuptools
     - pip
   run:
