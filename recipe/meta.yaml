@@ -43,7 +43,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
-    - libflint
+    - libflint 2.* *nontl*
     - llvmdev          # [unix]
     - llvmdev  8.*     # [win]
     - python
