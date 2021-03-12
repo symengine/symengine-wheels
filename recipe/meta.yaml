@@ -21,7 +21,7 @@ source:
       - gh1691.patch
 
 build:
-  number: 4
+  number: 0
   skip: true   # [py != 38]
   ignore_run_exports_from:
     - gmp
@@ -52,8 +52,7 @@ requirements:
     - mpfr
     - mpc
     - libflint 2.* *nontl*
-    - llvmdev          # [unix]
-    - llvmdev  8.*     # [win]
+    - llvmdev
     - python
     - setuptools
     - cython
