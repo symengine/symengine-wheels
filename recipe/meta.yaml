@@ -23,6 +23,12 @@ source:
 build:
   number: 4
   skip: true   # [py != 38]
+  ignore_run_exports_from:
+    - gmp
+    - mpfr
+    - mpc
+    - libflint
+    - llvmdev
 
 requirements:
   build:
