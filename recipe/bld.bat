@@ -39,10 +39,10 @@ set dep_dir=%LIBRARY_BIN%
 %PYTHON% %RECIPE_DIR%\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\flint-15.dll
 if errorlevel 1 exit 1
 
-mkdir %RECIPE_DIR%\build_artifacts
-mkdir %RECIPE_DIR%\build_artifacts\pypi_wheels
+mkdir %RECIPE_DIR%\..\build_artifacts
+mkdir %RECIPE_DIR%\..\build_artifacts\pypi_wheels
 
 for %%f in (dist\*.whl) do (
-  cp %%f %RECIPE_DIR%\build_artifacts\pypi_wheels\
+  cp %%f %RECIPE_DIR%\..\build_artifacts\pypi_wheels\
   %PYTHON% -m pip install %%f
 )
