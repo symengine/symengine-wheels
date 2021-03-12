@@ -33,7 +33,7 @@ cd python
 mkdir %SRC_DIR%\build_artifacts
 mkdir %SRC_DIR%\build_artifacts\pypi_wheels
 
-for %%WHL in (dist/*.whl) do (
-  cp %WHL% %SRC_DIR%\build_artifacts\pypi_wheels\
-  %PYTHON% -m pip install %WHL%
+for %%f in (dist\*.whl) do (
+  cp %%f %SRC_DIR%\build_artifacts\pypi_wheels\
+  %PYTHON% -m pip install %%f
 )
