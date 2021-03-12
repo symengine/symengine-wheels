@@ -30,6 +30,9 @@ cd ..
 cd python
 %PYTHON% setup.py bdist_wheel build_ext --generator=Ninja install --symengine-dir=%LIBRARY_PREFIX%
 
+set dep_dir=%LIBRARY_BIN%
+%PYTHON% %SRC_DIR%\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\flint-15.dll
+
 mkdir %SRC_DIR%\build_artifacts
 mkdir %SRC_DIR%\build_artifacts\pypi_wheels
 
