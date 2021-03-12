@@ -59,6 +59,7 @@ pushd python
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
     rm -rf $PREFIX/lib/libc++.*
+    cat $(which delocate-wheel)
     delocate-wheel -w fixed_wheels -v dist/*.whl
   fi
 popd
@@ -73,6 +74,12 @@ for whl in python/fixed_wheels/*.whl; do
   cp $whl $WHL_DEST
 done
 
-for whl in python/fixed_wheels/*.whl; do
-   $PYTHON -m pip install $whl
-done
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  for whl in python/fixed_wheels/*.whl; do
+    $PYTHON -m pip install $whl
+  done
+else
+  for whl in python/dist/*.whl; do
+    $PYTHON -m pip install $whl
+  done
+fi
