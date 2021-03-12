@@ -29,6 +29,8 @@ build:
     - mpc
     - libflint
     - llvmdev
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
 
 requirements:
   build:

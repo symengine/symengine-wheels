@@ -36,7 +36,7 @@ cd python
 if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
-python %RECIPE_DIR%\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\flint-15.dll
+python %RECIPE_DIR%\fix_windows_wheel.py %dep_dir%\mpir.dll %dep_dir%\mpfr.dll %dep_dir%\mpc.dll %dep_dir%\flint-15.dll %dep_dir%\pthreadVSE2.dll
 if errorlevel 1 exit 1
 
 mkdir %RECIPE_DIR%\..\build_artifacts
