@@ -53,10 +53,6 @@ pushd python
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2010_x86_64
-  elif [[ "$target_platform" == linux-ppc64le ]]; then
-    rm -rf $PREFIX/lib/libstdc++.*
-    rm -rf $PREFIX/lib/libgcc*
-    auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_powerpc64le
   elif [[ "$target_platform" == linux-* ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
