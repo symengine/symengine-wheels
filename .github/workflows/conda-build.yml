@@ -77,9 +77,12 @@ jobs:
       run: |
         call activate base
         conda.exe install -c conda-forge 'python=3.6' conda-build conda "conda-forge-ci-setup=3" pip
+        if errorlevel 1 exit 1
         setup_conda_rc .\ ".\recipe" .\.ci_support\%CONFIG%.yaml
+        if errorlevel 1 exit 1
         
         conda.exe build "recipe" -m .ci_support\%CONFIG%.yaml
+        if errorlevel 1 exit 1
         set "FEEDSTOCK_NAME=%GITHUB_REPOSITORY:*/=%"
         set "GIT_BRANCH=%GITHUB_REF:*/=%"
         if %UPLOAD_PACKAGES% == "True" (

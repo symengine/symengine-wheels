@@ -39,6 +39,8 @@ ctest
 popd
 
 pushd python
+  echo "" >> LICENSE
+  cat $RECIPE_DIR/UPSTREAM_LICENSES.txt >> LICENSE
   PYTHON_ARGS="-D IGNORE_THIS=1"
   for ARG in $CMAKE_ARGS; do
     if [[ "$ARG" == "-DCMAKE_"* ]] && [[ "$ARG" != *";"* ]]; then

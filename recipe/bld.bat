@@ -32,6 +32,7 @@ cd ..
 cd ..
 
 cd python
+type %RECIPE_DIR%\\UPSTREAM_LICENSES.txt >> LICENSE
 %PYTHON% setup.py bdist_wheel build_ext --generator=Ninja install --symengine-dir=%LIBRARY_PREFIX%
 if errorlevel 1 exit 1
 
