@@ -39,6 +39,7 @@ requirements:
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - auditwheel      # [linux]
     - delocate        # [osx or win]
+    - pip             # [osx]
     - cython
   host:
     - gmp           # [unix]
