@@ -95,7 +95,6 @@ jobs:
         UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
       if: matrix.os == 'windows'
-
     - name: Upload artifacts to Github
       uses: actions/upload-artifact@v2
       with:
