@@ -2,6 +2,7 @@
 
 set -x
 
+# Build the C++ library
 pushd cxx
 
 mkdir build
@@ -38,6 +39,7 @@ ctest
 
 popd
 
+# Build the python wheel
 pushd python
   echo "" >> LICENSE
   cat $RECIPE_DIR/UPSTREAM_LICENSES.txt >> LICENSE
@@ -54,6 +56,10 @@ pushd python
     PYTHON_ARGS="$PYTHON_ARGS;SYMENGINE_COPY_EXTENSION=yes"
   fi
   $PYTHON setup.py bdist_wheel build_ext -i $PYTHON_ARGS
+popd
+
+# Repair the wheel
+pushd python
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
@@ -70,6 +76,7 @@ pushd python
   fi
 popd
 
+# Copy the wheel to destination
 for whl in python/fixed_wheels/*.whl; do
   if [[ "$build_platform" == "osx-"* ]]; then
     WHL_DEST=$RECIPE_DIR/../build_artifacts/pypi_wheels
@@ -80,6 +87,7 @@ for whl in python/fixed_wheels/*.whl; do
   cp $whl $WHL_DEST
 done
 
+# Install the wheel
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
   for whl in python/fixed_wheels/*.whl; do
     $PYTHON -m pip install $whl

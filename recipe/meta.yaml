@@ -16,7 +16,7 @@ source:
 
 build:
   number: 0
-  skip: true   # [py != 38]
+  skip: true   # [py != 39]
   ignore_run_exports_from:
     - gmp
     - mpfr
