@@ -1,113 +1,30 @@
-About symengine-wheels
-======================
+Repository to build wheels
+==========================
 
-Home: https://github.com/symengine/symengine.py
+We are using this repo to build wheels for symengine.py. Instead of using
+the multibuild infrastructure, we are using conda-forge infrastructure
+because of few reasons
 
-Package license: MIT
+  1. Dependencies like LLVM which take a lot of time are pre-built
+  2. cross-compiling is supported.
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/python-symengine-feedstock/blob/master/LICENSE.txt)
+In order to use conda-forge built dependencies, there are a few catches
+due to the use of recent libgcc and libsdtcxx. In order to do that, we
+need to do the following for Linux,
 
-Summary: Python wrappers for SymEngine, a fast symbolic manipulation library, written in C++
+  1. If C shared libraries are used, they need to be built with 
+     `-static-libgcc` or cross our fingers that they don't need
+     a newer version of libgcc. (We checked and they didn't)
+     Else use static libraries.
+  2. Use only static libraries for C++ dependencies.
+  3. Build the wrapper with `-static-libgcc -static-libstdcxx`
 
-Current build status
-====================
+For macOS we need to do the following,
 
+  1. Use only static libraries for C++ dependencies.
+  2. Link in libc++ statically or hope that the dependencies don't
+     use newer features of libc++. (We checked and they didn't)
 
-<table>
-</table>
+For Windows,
 
-Current release info
-====================
-
-| Name | Downloads | Version | Platforms |
-| --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-symengine--wheels-green.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/symengine-wheels.svg)](https://anaconda.org/conda-forge/symengine-wheels) |
-
-Installing symengine-wheels
-===========================
-
-Installing `symengine-wheels` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
-
-```
-conda config --add channels conda-forge
-```
-
-Once the `conda-forge` channel has been enabled, `symengine-wheels` can be installed with:
-
-```
-conda install symengine-wheels
-```
-
-It is possible to list all of the versions of `symengine-wheels` available on your platform with:
-
-```
-conda search symengine-wheels --channel conda-forge
-```
-
-
-About conda-forge
-=================
-
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
-
-conda-forge is a community-led conda channel of installable packages.
-In order to provide high-quality builds, the process has been automated into the
-conda-forge GitHub organization. The conda-forge organization contains one repository
-for each of the installable packages. Such a repository is known as a *feedstock*.
-
-A feedstock is made up of a conda recipe (the instructions on what and how to build
-the package) and the necessary configurations for automatic building using freely
-available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
-packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
-
-To manage the continuous integration and simplify feedstock maintenance
-[conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
-Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
-this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
-
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
-
-Terminology
-===========
-
-**feedstock** - the conda recipe (raw material), supporting scripts and CI configuration.
-
-**conda-smithy** - the tool which helps orchestrate the feedstock.
-                   Its primary use is in the construction of the CI ``.yml`` files
-                   and simplify the management of *many* feedstocks.
-
-**conda-forge** - the place where the feedstock and smithy live and work to
-                  produce the finished article (built conda distributions)
-
-
-Updating symengine-wheels-feedstock
-===================================
-
-If you would like to improve the symengine-wheels recipe or build a new
-package version, please fork this repository and submit a PR. Upon submission,
-your changes will be run on the appropriate platforms to give the reviewer an
-opportunity to confirm that the changes result in a successful build. Once
-merged, the recipe will be re-built and uploaded automatically to the
-`conda-forge` channel, whereupon the built conda packages will be available for
-everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/symengine-wheels-feedstock are
-immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
-build distinct package versions.
-
-In order to produce a uniquely identifiable distribution:
- * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string).
- * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](https://docs.conda.io/projects/conda-build/en/latest/resources/define-metadata.html#build-number-and-string)
-   back to 0.
-
-Feedstock Maintainers
-=====================
-
-* [@certik](https://github.com/certik/)
-* [@isuruf](https://github.com/isuruf/)
-
+  1. Hope that the user has install Visual C++ 2017 Redistributable;
