@@ -65,7 +65,7 @@ pushd python
   else
     python -m pip install "git+https://github.com/isuruf/delocate@sanitize_rpaths#egg=delocate"
     rm -rf $PREFIX/lib/libc++.*
-    python $(which delocate-wheel) -w fixed_wheels -v dist/*.whl
+    python $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
   fi
 popd
 
