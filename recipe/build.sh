@@ -50,6 +50,9 @@ pushd python
       PYTHON_ARGS="$PYTHON_ARGS;${cmake_arg}=${cmake_val}"
     fi
   done
+  if [[ "$target_platform" == linux-ppc64le ]]; then
+    PYTHON_ARGS="$PYTHON_ARGS;SYMENGINE_COPY_EXTENSION=yes"
+  fi
   $PYTHON setup.py bdist_wheel build_ext -i $PYTHON_ARGS
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*

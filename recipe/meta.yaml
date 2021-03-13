@@ -1,24 +1,18 @@
 {% set version = "0.6.1" %}
+{% set commit = "52034da38bba6a273a6035474aa763d2dae358ea" %}
 
 package:
   name: symengine-wheels
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
-    sha256: 8da65b0a693d19b0030461c655a223d20a9164d7d04dd1317c41d6988dc1ec96
-    patches:
-      - gh341.patch
-      - debug.diff
+  - url: https://github.com/symengine/symengine.py/archive/52034da38bba6a273a6035474aa763d2dae358ea.tar.gz
+    sha256: 2def184ff4348a9a60ed14a065b07f5d665ba34137e62d02db9eb88c2ecc036b
     folder: python
 
-  - url: https://github.com/symengine/symengine/releases/download/v0.6.0/symengine-0.6.0.tar.gz
-    sha256: 4d2caa86c03eaaa8ed004084d02f87b5c51b6229f8ba70d161227e22d6302f0a
+  - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
+    sha256: 8b865bb72b71539d9cd2488a0468c6c3ea90cc606062a7880c3ff5af6abd74b1
     folder: cxx
-    patches:
-      - gh1654.patch
-      - gh1678.patch
-      - gh1691.patch
 
 build:
   number: 0
