@@ -63,6 +63,7 @@ pushd python
     rm -rf $PREFIX/lib/libgcc*
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
+    python -m pip uninstall delocate
     python -m pip install "git+https://github.com/isuruf/delocate@sanitize_rpaths#egg=delocate"
     rm -rf $PREFIX/lib/libc++.*
     python $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
