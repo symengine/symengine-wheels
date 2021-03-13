@@ -9,3 +9,5 @@ build_platform:
 test_on_native_only: True
 skip_render:
   - README.md
+  - .github/workflows/automerge.yml
+  - .github/workflows/webservices.yml
