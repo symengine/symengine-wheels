@@ -19,7 +19,7 @@ gmp:
 mpfr:
 - '4'
 numpy:
-- '1.18'
+- '1.19'
 pin_run_as_build:
   gmp:
     max_pin: x
@@ -29,7 +29,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.6.* *_73_pypy
+- 3.9.* *_cpython
+python_impl:
+- cpython
 target_platform:
 - linux-64
 zip_keys:
@@ -39,3 +41,4 @@ zip_keys:
   - docker_image
 - - python
   - numpy
+  - python_impl

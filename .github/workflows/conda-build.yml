@@ -13,75 +13,59 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - CONFIG: linux_64_numpy1.16python3.6.____cpython
+          - CONFIG: linux_64_numpy1.16python3.6.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_64_numpy1.16python3.7.____cpython
+          - CONFIG: linux_64_numpy1.16python3.7.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_64_numpy1.16python3.8.____cpython
+          - CONFIG: linux_64_numpy1.16python3.8.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_64_numpy1.18python3.6.____73_pypy
+          - CONFIG: linux_64_numpy1.18python3.6.____73_pypypython_implpypy
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_64_numpy1.19python3.7.____73_pypy
+          - CONFIG: linux_64_numpy1.19python3.7.____73_pypypython_implpypy
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_64_numpy1.19python3.9.____cpython
+          - CONFIG: linux_64_numpy1.19python3.9.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.16python3.6.____cpython
+          - CONFIG: linux_aarch64_numpy1.16python3.6.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.16python3.7.____cpython
+          - CONFIG: linux_aarch64_numpy1.16python3.7.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.16python3.8.____cpython
+          - CONFIG: linux_aarch64_numpy1.16python3.8.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.18python3.6.____73_pypy
+          - CONFIG: linux_aarch64_numpy1.19python3.9.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.19python3.7.____73_pypy
+          - CONFIG: linux_ppc64le_numpy1.16python3.6.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_aarch64_numpy1.19python3.9.____cpython
+          - CONFIG: linux_ppc64le_numpy1.16python3.7.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.16python3.6.____cpython
+          - CONFIG: linux_ppc64le_numpy1.16python3.8.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.16python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.16python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.18python3.6.____73_pypy
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.19python3.7.____73_pypy
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
-          - CONFIG: linux_ppc64le_numpy1.19python3.9.____cpython
+          - CONFIG: linux_ppc64le_numpy1.19python3.9.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
@@ -97,22 +81,22 @@ jobs:
           - CONFIG: win_64_numpy1.19python3.9.____cpython
             UPLOAD_PACKAGES: True
             os: windows
-          - CONFIG: osx_64_numpy1.16python3.6.____cpython
+          - CONFIG: osx_64_numpy1.16python3.6.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_64_numpy1.16python3.7.____cpython
+          - CONFIG: osx_64_numpy1.16python3.7.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_64_numpy1.16python3.8.____cpython
+          - CONFIG: osx_64_numpy1.16python3.8.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_64_numpy1.18python3.6.____73_pypy
+          - CONFIG: osx_64_numpy1.18python3.6.____73_pypypython_implpypy
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_64_numpy1.19python3.7.____73_pypy
+          - CONFIG: osx_64_numpy1.19python3.7.____73_pypypython_implpypy
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_64_numpy1.19python3.9.____cpython
+          - CONFIG: osx_64_numpy1.19python3.9.____cpythonpython_implcpython
             UPLOAD_PACKAGES: True
             os: macos
           - CONFIG: osx_arm64_python3.8.____cpython
