@@ -5,8 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/archive/fe26e9c.tar.gz
-    sha256: f8b7b21a06782baddae0e94e2bb02ff03bd39efecdd5b13d80a0d83e9ccf8db1
+  - url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
+    sha256: 6a83cb044a1b34cc90325de2c8c60813dcf06948fb4d7380c2e719eb4b6b60ad
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
