@@ -1,13 +1,12 @@
 {% set version = "0.6.1" %}
-{% set commit = "52034da38bba6a273a6035474aa763d2dae358ea" %}
 
 package:
   name: symengine-wheels
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/archive/52034da38bba6a273a6035474aa763d2dae358ea.tar.gz
-    sha256: 2def184ff4348a9a60ed14a065b07f5d665ba34137e62d02db9eb88c2ecc036b
+  - url: https://github.com/symengine/symengine.py/archive/1613329918a58b3569f6883d122be01be84a1d1a.tar.gz
+    sha256: bcce8eb11cf7de9616fceb30726abba60d4b28b978a5f1de22c0c21e734e44b0
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
