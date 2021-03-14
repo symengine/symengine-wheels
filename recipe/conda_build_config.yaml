@@ -1,2 +1,4 @@
 channel_targets:
   - isuruf test
+docker_image:                                   # [(ppc64le or aarch64) and os.environ.get("BUILD_PLATFORM") == "linux-64"]
+  - quay.io/condaforge/linux-anvil-cos7-x86_64  # [(ppc64le or aarch64) and os.environ.get("BUILD_PLATFORM") == "linux-64"]

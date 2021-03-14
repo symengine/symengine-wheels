@@ -87,12 +87,6 @@ for whl in python/fixed_wheels/*.whl; do
 done
 
 # Install the wheel
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
-  for whl in python/fixed_wheels/*.whl; do
-    $PYTHON -m pip install $whl
-  done
-else
-  for whl in python/dist/*.whl; do
-    $PYTHON -m pip install $whl
-  done
-fi
+for whl in python/fixed_wheels/*.whl; do
+  $PYTHON -m pip install $whl
+done

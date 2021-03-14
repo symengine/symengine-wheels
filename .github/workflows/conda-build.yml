@@ -19,11 +19,11 @@ jobs:
             os: ubuntu
           - CONFIG: linux_aarch64_numpy1.19python3.9.____cpython
             UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
           - CONFIG: linux_ppc64le_numpy1.19python3.9.____cpython
             UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-comp7
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
           - CONFIG: win_64_numpy1.19python3.9.____cpython
             UPLOAD_PACKAGES: True
