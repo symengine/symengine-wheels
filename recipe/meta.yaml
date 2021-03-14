@@ -1,12 +1,12 @@
-{% set version = "0.6.1" %}
+{% set version = "0.7.0" %}
 
 package:
   name: symengine-wheels
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/archive/1613329918a58b3569f6883d122be01be84a1d1a.tar.gz
-    sha256: bcce8eb11cf7de9616fceb30726abba60d4b28b978a5f1de22c0c21e734e44b0
+  - url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
+    sha256: 50671ddeed0f9c126963ef406a23887e38a2caf7d192228768be2997220a85a6
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
@@ -15,7 +15,6 @@ source:
 
 build:
   number: 0
-  skip: true   # [py != 39]
   ignore_run_exports_from:
     - gmp
     - mpfr
