@@ -5,7 +5,7 @@ We are using this repo to build wheels for symengine.py. Instead of using
 the multibuild infrastructure, we are using conda-forge infrastructure
 because of few reasons
 
-  1. Dependencies like LLVM which take a lot of time are pre-built
+  1. Dependencies like LLVM which take a lot of time are pre-built.
   2. cross-compiling is supported.
 
 In order to use conda-forge built dependencies, there are a few catches
@@ -27,4 +27,4 @@ For macOS we need to do the following,
 
 For Windows,
 
-  1. Hope that the user has install Visual C++ 2017 Redistributable;
+  1. Hope that the user has install Visual C++ 2017 Redistributable.
