@@ -1,4 +1,4 @@
-{% set version = "0.7.0.post2" %}
+{% set version = "0.7.0.post3" %}
 
 package:
   name: symengine-wheels
@@ -6,7 +6,7 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/archive/v{{ version }}.tar.gz
-    sha256: 1b645c6a53a67f692a8222f1765f9fe00de5df065b84b5e0458395d4a7f700b0
+    sha256: 54333c45e4e731637643143358969b4652232bc42ade67633b464694dab463d1
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
