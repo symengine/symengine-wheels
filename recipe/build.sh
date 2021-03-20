@@ -90,3 +90,11 @@ done
 for whl in python/fixed_wheels/*.whl; do
   $PYTHON -m pip install $whl
 done
+
+# debug
+if [[ "$target_platform" == "osx-"* ]]; then
+  for f in $(find $SP_DIR/symengine -name "*.so" -or -name "*.dylib"); do
+    echo $f
+    otool -l $f
+  done
+fi
