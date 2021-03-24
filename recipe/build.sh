@@ -29,7 +29,7 @@ cmake ${CMAKE_ARGS} \
     -DWITH_LLVM=yes \
     -DWITH_COTIRE=no \
     -DBUILD_FOR_DISTRIBUTION=yes \
-    -DBUILD_SHARED_LIBS=yes \
+    -DBUILD_SHARED_LIBS=no \
     ..
 
 cmake --build . -- -j${CPU_COUNT}
