@@ -9,7 +9,7 @@ mkdir build
 cd build
 
 if [[ "$target_platform" == linux-* ]]; then
-    export LDFLAGS="$LDFLAGS -static-libstdc++"
+    export LDFLAGS="$LDFLAGS -static-libstdc++ -Wl,--exclude-libs,ALL"
 fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
