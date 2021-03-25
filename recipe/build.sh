@@ -55,6 +55,7 @@ pushd python
   if [[ "$target_platform" == linux-ppc64le ]]; then
     PYTHON_ARGS="$PYTHON_ARGS;SYMENGINE_COPY_EXTENSION=yes"
   fi
+  PYTHON_ARGS="$PYTHON_ARGS;CMAKE_VERBOSE_MAKEFILE=1"
   $PYTHON setup.py bdist_wheel build_ext -i $PYTHON_ARGS
 popd
 
