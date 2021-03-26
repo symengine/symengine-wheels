@@ -41,7 +41,6 @@ popd
 
 # Build the python wheel
 pushd python
-  sed -i.bak "s/--exported_symbol/-exported_symbol/g" cmake/FindPython.cmake
   echo "" >> LICENSE
   cat $RECIPE_DIR/UPSTREAM_LICENSES.txt >> LICENSE
   PYTHON_ARGS="-D IGNORE_THIS=1"
