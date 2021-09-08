@@ -39,7 +39,7 @@ requirements:
     - auditwheel      # [linux]
     - delocate        # [win]
     - pip             # [osx]
-    - cython
+    - cython >=0.29.24
   host:
     - gmp           # [unix]
     - mpir          # [win]
@@ -49,7 +49,7 @@ requirements:
     - llvmdev
     - python
     - setuptools
-    - cython
+    - cython >=0.29.24
     - pip
   run:
     - python
