@@ -9,7 +9,7 @@ source:
     sha256: 8d0773615e325f907320e80c409be9c195ff58bb5541c084379e6d63b9f19a00
     folder: python
 
-  - url: https://github.com/symengine/symengine/releases/download/v0.7.0/symengine-0.7.0.tar.gz
+  - url: https://github.com/symengine/symengine/releases/download/v0.8.1/symengine-0.8.1.tar.gz
     sha256: 41eb6ae6901c09e53d7f61f0758f9201e81fc534bfeecd4b2bd4b4e6f6768693
     folder: cxx
 
