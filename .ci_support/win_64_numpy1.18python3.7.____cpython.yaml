@@ -1,25 +1,17 @@
 c_compiler:
-- gcc
-c_compiler_version:
-- '9'
-cdt_name:
-- cos7
+- vs2017
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - isuruf test
 cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '9'
-docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- vs2017
 gmp:
 - '6'
 mpfr:
 - '4'
 numpy:
-- '1.16'
+- '1.18'
 pin_run_as_build:
   gmp:
     max_pin: x
@@ -29,14 +21,12 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.8.* *_cpython
+- 3.7.* *_cpython
 python_impl:
 - cpython
 target_platform:
-- linux-ppc64le
+- win-64
 zip_keys:
-- - c_compiler_version
-  - cxx_compiler_version
 - - python
   - numpy
   - python_impl
