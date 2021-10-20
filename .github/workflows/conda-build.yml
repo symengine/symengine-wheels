@@ -135,7 +135,7 @@ jobs:
     - name: Install Miniconda for windows
       uses: conda-incubator/setup-miniconda@v2
       with:
-        miniconda-version: latest
+        miniforge-version: latest
       if: matrix.os == 'windows'
 
     - name: Build on windows
