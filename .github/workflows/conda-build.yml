@@ -136,13 +136,14 @@ jobs:
       uses: conda-incubator/setup-miniconda@v2
       with:
         miniforge-version: latest
+        miniforge-variant: Mambaforge
       if: matrix.os == 'windows'
 
     - name: Build on windows
       shell: cmd
       run: |
         call activate base
-        conda.exe install -c conda-forge 'python=3.6' conda-build conda "conda-forge-ci-setup=3" pip
+        mamba.exe install -c conda-forge 'python=3.6' conda-build conda "conda-forge-ci-setup=3" pip
         if errorlevel 1 exit 1
         setup_conda_rc .\ ".\recipe" .\.ci_support\%CONFIG%.yaml
         if errorlevel 1 exit 1
