@@ -5,7 +5,7 @@ c_compiler:
 c_compiler_version:
 - '11'
 channel_sources:
-- conda-forge/label/rust_dev,conda-forge
+- conda-forge
 channel_targets:
 - isuruf test
 cxx_compiler:
@@ -14,6 +14,8 @@ cxx_compiler_version:
 - '11'
 gmp:
 - '6'
+libflint:
+- '2.8'
 macos_machine:
 - arm64-apple-darwin20.0.0
 mpfr:
@@ -29,7 +31,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.8.* *_cpython
 python_impl:
 - cpython
 target_platform:
