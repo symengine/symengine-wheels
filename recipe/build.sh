@@ -14,7 +14,7 @@ fi
 
 if [[ "$target_platform" == linux-ppc64le ]]; then
     export CXXFLAGS="$CXXFLAGS -fno-plt"
-    export LDFLAGS="$LDFLAGS -fno-plt"
+    export LDFLAGS="$LDFLAGS -fno-plt -mcmodel=medium"
 fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
