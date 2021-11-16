@@ -1,13 +1,15 @@
 c_compiler:
 - vs2017
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - isuruf test
 cxx_compiler:
 - vs2017
 gmp:
 - '6'
+libflint:
+- '2.8'
 mpfr:
 - '4'
 numpy:

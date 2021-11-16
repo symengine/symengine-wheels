@@ -20,6 +20,8 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 gmp:
 - '6'
+libflint:
+- '2.8'
 mpfr:
 - '4'
 numpy:

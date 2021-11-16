@@ -12,6 +12,11 @@ if [[ "$target_platform" == linux-* ]]; then
     export LDFLAGS="$LDFLAGS -static-libstdc++ -Wl,--exclude-libs,ALL"
 fi
 
+if [[ "$target_platform" == linux-ppc64le ]]; then
+    export CXXFLAGS="$CXXFLAGS -fplt"
+    export LDFLAGS="$LDFLAGS -fplt"
+fi
+
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DBUILD_TESTS=no"
 fi
