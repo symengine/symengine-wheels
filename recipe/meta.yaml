@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/archive/133555483a8d3fbfa1c59cc81ec2ccc610119645.tar.gz
+  - url: https://github.com/symengine/symengine.py/archive/c9e9aa89e50b5d58c41d3074ec1263704a281d34.tar.gz
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v0.9.0/symengine-0.9.0.tar.gz
