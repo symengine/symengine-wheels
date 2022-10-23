@@ -50,7 +50,7 @@ requirements:
     - llvmdev
     - zlib
     - python
-    - setuptools
+    - setuptools <65
     - cython >=0.29.24
     - pip
   run:
