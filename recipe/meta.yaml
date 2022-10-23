@@ -22,6 +22,7 @@ build:
     - mpc
     - libflint
     - llvmdev
+    - zlib
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
 
@@ -47,6 +48,7 @@ requirements:
     - mpc
     - libflint 2.* *nontl*
     - llvmdev
+    - zlib
     - python
     - setuptools
     - cython >=0.29.24
