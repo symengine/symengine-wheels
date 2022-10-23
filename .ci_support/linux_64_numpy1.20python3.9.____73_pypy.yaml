@@ -1,9 +1,9 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '9'
+- '10'
 cdt_name:
-- cos7
+- cos6
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,34 +11,27 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '9'
+- '10'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 gmp:
 - '6'
 libflint:
-- '2.8'
+- '2.9'
 mpfr:
 - '4'
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
-  gmp:
-    max_pin: x
-  mpfr:
-    max_pin: x
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
-python_impl:
-- cpython
+- 3.9.* *_73_pypy
 target_platform:
-- linux-ppc64le
+- linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
 - - python
   - numpy
-  - python_impl

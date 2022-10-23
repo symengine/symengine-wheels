@@ -13,13 +13,13 @@ libflint:
 mpfr:
 - '4'
 numpy:
-- '1.21'
+- '1.20'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.8.* *_cpython
 target_platform:
 - win-64
 zip_keys:

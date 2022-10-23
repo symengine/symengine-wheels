@@ -3,7 +3,7 @@ MACOSX_DEPLOYMENT_TARGET:
 c_compiler:
 - clang
 c_compiler_version:
-- '11'
+- '14'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,11 +11,11 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '11'
+- '14'
 gmp:
 - '6'
 libflint:
-- '2.8'
+- '2.9'
 macos_machine:
 - arm64-apple-darwin20.0.0
 mpfr:
@@ -23,17 +23,11 @@ mpfr:
 numpy:
 - '1.21'
 pin_run_as_build:
-  gmp:
-    max_pin: x
-  mpfr:
-    max_pin: x
   python:
     min_pin: x.x
     max_pin: x.x
 python:
 - 3.10.* *_cpython
-python_impl:
-- cpython
 target_platform:
 - osx-arm64
 zip_keys:
@@ -41,4 +35,3 @@ zip_keys:
   - cxx_compiler_version
 - - python
   - numpy
-  - python_impl

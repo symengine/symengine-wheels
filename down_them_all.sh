@@ -35,8 +35,14 @@ declare -a arr=(
 	"-cp38-cp38-win_amd64.whl"
 	"-cp39-cp39-win_amd64.whl"
 	"-cp310-cp310-win_amd64.whl"
-        "-pp37-pypy37_pp73-macosx_10_9_x86_64.whl"
-        "-pp37-pypy37_pp73-manylinux2010_x86_64.whl"
+        "-pp38-pypy38_pp73-macosx_10_9_x86_64.whl"
+        "-pp39-pypy39_pp73-macosx_10_9_x86_64.whl"
+        "-pp38-pypy38_pp73-manylinux2010_x86_64.whl"
+        "-pp39-pypy39_pp73-manylinux2010_x86_64.whl"
+        "-pp38-pypy38_pp73-manylinux2014_aarch64.whl"
+        "-pp39-pypy39_pp73-manylinux2014_aarch64.whl"
+        "-pp38-pypy38_pp73-manylinux2014_ppc64le.whl"
+        "-pp39-pypy39_pp73-manylinux2014_ppc64le.whl"
 	".tar.gz")
 for whl_file in "${arr[@]}"
 do

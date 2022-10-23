@@ -16,7 +16,6 @@ source:
 
 build:
   number: 0
-  skip: true  # [(ppc64le or aarch64) and python_impl == "pypy"]
   ignore_run_exports_from:
     - gmp
     - mpfr
@@ -38,7 +37,7 @@ requirements:
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - auditwheel      # [linux]
-    - delocate        # [win]
+    - delocate        # [osx or win]
     - pip             # [osx]
     - cython >=0.29.24
   host:
