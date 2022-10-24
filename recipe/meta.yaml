@@ -37,6 +37,7 @@ requirements:
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
+    - setuptools <60  # [build_platform != target_platform]
     - auditwheel      # [linux]
     - delocate        # [osx or win]
     - pip             # [osx]
@@ -50,7 +51,7 @@ requirements:
     - llvmdev
     - zlib
     - python
-    - setuptools <65
+    - setuptools <60
     - cython >=0.29.24
     - pip
   run:
