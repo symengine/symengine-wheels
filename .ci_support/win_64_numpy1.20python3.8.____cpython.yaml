@@ -25,3 +25,5 @@ target_platform:
 zip_keys:
 - - python
   - numpy
+zlib:
+- '1.2'
