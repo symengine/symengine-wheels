@@ -53,7 +53,7 @@ requirements:
     - zlib
     - python
     - setuptools <60
-    - cython >=0.29.24
+    - cython >=0.29.24  # [build_platform == target_platform]
     - pip
   run:
     - python
