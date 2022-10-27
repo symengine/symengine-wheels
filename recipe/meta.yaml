@@ -49,6 +49,7 @@ requirements:
     - mpc
     - libflint 2.* *nontl*
     - llvmdev
+    - llvmdev 14.*  # [win]
     - zlib
     - python
     - setuptools <60
