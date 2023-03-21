@@ -19,7 +19,6 @@ fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DBUILD_TESTS=no"
-    sed -i.bak '1s@.*@#!/usr/bin/env python@' $BUILD_PREFIX/bin/cython
 fi
 
 cmake ${CMAKE_ARGS} \
