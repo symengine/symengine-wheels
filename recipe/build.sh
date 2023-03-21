@@ -37,8 +37,8 @@ cmake ${CMAKE_ARGS} \
     -DBUILD_SHARED_LIBS=no \
     ..
 
-cmake --build . -- -j${CPU_COUNT}
-cmake --build . --target install
+make -j${CPU_COUNT} VERBOSE=1
+make install
 
 ctest
 
