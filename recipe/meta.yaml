@@ -39,6 +39,7 @@ requirements:
     - auditwheel      # [linux]
     - delocate        # [win]
     - pip             # [osx]
+    - packaging       # [osx]
     - cython >=0.29.24
   host:
     - gmp           # [unix]
