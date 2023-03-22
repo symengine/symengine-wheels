@@ -9,7 +9,7 @@ source:
   - url: https://github.com/symengine/symengine.py/archive/f7e0f28a7badbcd70426ed938767acbbce41d7f1.tar.gz
     folder: python
 
-  - url: https://github.com/symengine/symengine/archive/0e3b0d79f5cb96ba312b8e960f8fdbb7ed5fa48e.tar.gz
+  - url: https://github.com/symengine/symengine/archive/324b2e0a012a2b86fd94110824d5618477f848c6.tar.gz
     folder: cxx
 
 build:
