@@ -75,7 +75,7 @@ pushd python
     rm -rf $PREFIX/lib/libgcc*
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
-    python -m pip install "https://github.com/isuruf/delocate/archive/sanitize_rpaths.tar.gz#egg=delocate"
+    python -m pip install "https://github.com/isuruf/delocate/archive/sanitize_rpaths2.tar.gz#egg=delocate"
     rm -rf $PREFIX/lib/libc++.*
     python $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
   fi
