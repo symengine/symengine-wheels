@@ -19,7 +19,6 @@ fi
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DBUILD_TESTS=no"
-    sed -i.bak '1s@.*@#!/usr/bin/env python@' $BUILD_PREFIX/bin/cython
 fi
 
 cmake ${CMAKE_ARGS} \
@@ -38,12 +37,14 @@ cmake ${CMAKE_ARGS} \
     -DBUILD_SHARED_LIBS=no \
     ..
 
-cmake --build . -- -j${CPU_COUNT}
-cmake --build . --target install
+make -j${CPU_COUNT} VERBOSE=1
+make install
 
 ctest
 
 popd
+
+rm -rf $PREFIX/lib/libc++.*
 
 # Build the python wheel
 pushd python
@@ -76,8 +77,7 @@ pushd python
     rm -rf $PREFIX/lib/libgcc*
     auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
-    python -m pip install "https://github.com/isuruf/delocate/archive/sanitize_rpaths.tar.gz#egg=delocate"
-    rm -rf $PREFIX/lib/libc++.*
+    python -m pip install "https://github.com/isuruf/delocate/archive/sanitize_rpaths2.tar.gz#egg=delocate"
     python $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
   fi
 popd

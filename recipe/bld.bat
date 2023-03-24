@@ -43,6 +43,7 @@ python %RECIPE_DIR%\fix_windows_wheel.py ^
   %dep_dir%\mpc.dll ^
   %dep_dir%\flint-17.dll ^
   %dep_dir%\pthreadVSE2.dll ^
+  %dep_dir%\zstd.dll ^
   %dep_dir%\zlib.dll
 if errorlevel 1 exit 1
 

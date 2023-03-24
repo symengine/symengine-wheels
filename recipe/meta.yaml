@@ -1,5 +1,5 @@
-{% set version = "0.9.2" %}
-{% set cxx_version = "0.9.0" %}
+{% set version = "0.10.0" %}
+{% set cxx_version = "0.10.1" %}
 
 package:
   name: symengine-wheels
@@ -7,11 +7,11 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 9da048692d741bb001d9947a0e2bdf8909600cb4e6f3b9273d518cf93300955d
+    sha256: 923944ab54aa0a787629424c101f5ec6a87b44177c669d21c7d3b0257f725927
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: dcf174ac708ed2acea46691f6e78b9eb946d8a2ba62f75e87cf3bf4f0d651724
+    sha256: 9c007c99e9633f5549a55fa7a66ebcbcf9e04092eb55f7bb781c22b9cf0570c4
     folder: cxx
 
 build:
@@ -37,10 +37,11 @@ requirements:
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
-    - setuptools <60  # [build_platform != target_platform]
+    - setuptools      # [build_platform != target_platform]
     - auditwheel      # [linux]
     - delocate        # [win]
     - pip             # [osx]
+    - packaging       # [osx]
     - cython >=0.29.24
   host:
     - gmp           # [unix]
@@ -49,10 +50,9 @@ requirements:
     - mpc
     - libflint 2.* *nontl*
     - llvmdev
-    - llvmdev 14.*  # [win]
     - zlib
     - python
-    - setuptools <60
+    - setuptools
     - cython >=0.29.24  # [build_platform == target_platform]
     - pip
   run:
