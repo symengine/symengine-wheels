@@ -33,6 +33,10 @@ jobs:
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
+          - CONFIG: linux_64_numpy1.21python3.7.____cpython
+            UPLOAD_PACKAGES: True
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            os: ubuntu
           - CONFIG: linux_64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
@@ -54,6 +58,10 @@ jobs:
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
           - CONFIG: linux_aarch64_numpy1.21python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            os: ubuntu
+          - CONFIG: linux_aarch64_numpy1.21python3.7.____cpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
@@ -81,6 +89,10 @@ jobs:
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
             os: ubuntu
+          - CONFIG: linux_ppc64le_numpy1.21python3.7.____cpython
+            UPLOAD_PACKAGES: True
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            os: ubuntu
           - CONFIG: linux_ppc64le_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
@@ -98,6 +110,9 @@ jobs:
             UPLOAD_PACKAGES: True
             os: windows
           - CONFIG: win_64_numpy1.21python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            os: windows
+          - CONFIG: win_64_numpy1.21python3.7.____cpython
             UPLOAD_PACKAGES: True
             os: windows
           - CONFIG: win_64_numpy1.23python3.11.____cpython
@@ -118,6 +133,9 @@ jobs:
           - CONFIG: osx_64_numpy1.21python3.10.____cpython
             UPLOAD_PACKAGES: True
             os: macos
+          - CONFIG: osx_64_numpy1.21python3.7.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
           - CONFIG: osx_64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
@@ -128,6 +146,9 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
           - CONFIG: osx_arm64_numpy1.21python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+          - CONFIG: osx_arm64_numpy1.21python3.7.____cpython
             UPLOAD_PACKAGES: True
             os: macos
           - CONFIG: osx_arm64_numpy1.23python3.11.____cpython
