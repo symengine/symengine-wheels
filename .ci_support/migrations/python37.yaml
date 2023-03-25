@@ -29,10 +29,10 @@ __migrator:
       - python_abi
     exclude_pinned_pkgs: false
 
-python:
-  - 3.7.* *_cpython
+python:               # [not (osx and arm64)]
+  - 3.7.* *_cpython   # [not (osx and arm64)]
 # additional entries to add for zip_keys
-numpy:
-  - 1.21
-python_impl:
-  - cpython
+numpy:                # [not (osx and arm64)]
+  - 1.21              # [not (osx and arm64)]
+python_impl:          # [not (osx and arm64)]
+  - cpython           # [not (osx and arm64)]

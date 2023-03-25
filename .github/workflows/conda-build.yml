@@ -148,9 +148,6 @@ jobs:
           - CONFIG: osx_arm64_numpy1.21python3.10.____cpython
             UPLOAD_PACKAGES: True
             os: macos
-          - CONFIG: osx_arm64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
           - CONFIG: osx_arm64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
