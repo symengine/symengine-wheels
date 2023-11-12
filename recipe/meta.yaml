@@ -49,7 +49,7 @@ requirements:
     - mpfr
     - mpc
     - libflint 2.* *nontl*
-    - llvmdev
+    - llvmdev <17
     - zlib
     - python
     - setuptools
