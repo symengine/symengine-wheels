@@ -1,5 +1,5 @@
-{% set version = "0.10.0" %}
-{% set cxx_version = "0.10.1" %}
+{% set version = "0.11.0" %}
+{% set cxx_version = "0.11.1" %}
 
 package:
   name: symengine-wheels
@@ -7,11 +7,11 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 923944ab54aa0a787629424c101f5ec6a87b44177c669d21c7d3b0257f725927
+    sha256: 702fc5e5640e81714eacecf9da03ba1d9cc2f49fc8c4c6154b57d3d7dfacc698
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: 9c007c99e9633f5549a55fa7a66ebcbcf9e04092eb55f7bb781c22b9cf0570c4
+    sha256: 217b39955dc19f920c6f54c057fdc89e8e155ddee8f0e3c3cacc67b3e3850b64
     folder: cxx
 
 build:
