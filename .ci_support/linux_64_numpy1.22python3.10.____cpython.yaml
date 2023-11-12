@@ -3,7 +3,7 @@ c_compiler:
 c_compiler_version:
 - '12'
 cdt_name:
-- cos7
+- cos6
 channel_sources:
 - conda-forge
 channel_targets:
@@ -21,15 +21,15 @@ libflint:
 mpfr:
 - '4'
 numpy:
-- '1.23'
+- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.10.* *_cpython
 target_platform:
-- linux-ppc64le
+- linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
