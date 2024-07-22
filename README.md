@@ -10,7 +10,7 @@ because of few reasons
 
 In order to use conda-forge built dependencies, there are a few catches
 due to the use of recent libgcc and libsdtcxx. In order to do that, we
-need to do the following for Linux,
+need to do ALL of the following for Linux,
 
   1. If C shared libraries are used, they need to be built with 
      `-static-libgcc` or cross our fingers that they don't need
@@ -19,11 +19,10 @@ need to do the following for Linux,
   2. Use only static libraries for C++ dependencies.
   3. Build the wrapper with `-static-libgcc -static-libstdcxx`
 
-For macOS we need to do the following,
+For macOS we need to ONE of the following,
 
-  1. Use only static libraries for C++ dependencies.
-  2. Link in libc++ statically or hope that the dependencies don't
-     use newer features of libc++. (We checked and they didn't)
+  1. Use only static libraries for C++ dependencies and ink in libc++ statically OR 
+  2. Hope that the dependencies don't use newer features of libc++. (We checked and they didn't)
 
 For Windows,
 
