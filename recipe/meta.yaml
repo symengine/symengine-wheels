@@ -6,12 +6,10 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 702fc5e5640e81714eacecf9da03ba1d9cc2f49fc8c4c6154b57d3d7dfacc698
+  - url: https://github.com/symengine/symengine.py/archive/f09067861cbd99538508932e57ac29191a80eaa1.tar.gz
     folder: python
 
-  - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: 217b39955dc19f920c6f54c057fdc89e8e155ddee8f0e3c3cacc67b3e3850b64
+  - url: https://github.com/symengine/symengine/archive/ed1e3e4fd8260097fa25aa1282e1d3a4ac4527f3.tar.gz
     folder: cxx
 
 build:
