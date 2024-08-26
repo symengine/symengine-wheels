@@ -33,16 +33,14 @@ requirements:
     - {{ stdlib('c') }}
     - make   # [unix]
     - ninja  # [win]
-    - unzip           # [unix]
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - setuptools      # [build_platform != target_platform]
     - auditwheel      # [linux]
-    - delocate        # [win]
+    - delocate        # [win or osx]
+    - unzip           # [unix]
     - m2-unzip        # [win]
-    - pip             # [osx]
-    - packaging       # [osx]
     - cython >=0.29.24
   host:
     - gmp           # [unix]
