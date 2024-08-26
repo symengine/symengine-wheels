@@ -21,7 +21,7 @@ need to do ALL of the following for Linux,
 
 For macOS we need to ONE of the following,
 
-  1. Use only static libraries for C++ dependencies and ink in libc++ statically OR 
+  1. Use only static libraries for C++ dependencies and ink in libc++ statically OR
   2. Hope that the dependencies don't use newer features of libc++. (We checked and they didn't)
 
 For Windows,
