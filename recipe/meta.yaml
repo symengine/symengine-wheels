@@ -23,12 +23,14 @@ build:
     - zlib
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - make   # [unix]
     - ninja  # [win]
     - unzip           # [unix]
