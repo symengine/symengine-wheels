@@ -111,6 +111,50 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: osx_64_numpy1.22python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy1.22python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy1.22python3.9.____73_pypy
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy1.22python3.9.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy1.23python3.11.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy1.26python3.12.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.22python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.22python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.22python3.9.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.23python3.11.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.26python3.12.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
           - CONFIG: win_64_numpy1.22python3.10.____cpython
             UPLOAD_PACKAGES: True
             os: windows
@@ -135,54 +179,10 @@ jobs:
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']
-          - CONFIG: osx_64_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_64_numpy1.22python3.9.____73_pypy
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_64_numpy1.22python3.9.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_64_numpy1.23python3.11.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_64_numpy1.26python3.12.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_arm64_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_arm64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_arm64_numpy1.22python3.9.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_arm64_numpy1.23python3.11.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
-          - CONFIG: osx_arm64_numpy1.26python3.12.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-latest']
     steps:
 
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
 
     - name: Build on Linux
       if: matrix.os == 'ubuntu'
@@ -232,10 +232,9 @@ jobs:
         ./.scripts/run_osx_build.sh
 
     - name: Install Miniconda for windows
-      uses: conda-incubator/setup-miniconda@v2
+      uses: conda-incubator/setup-miniconda@a4260408e20b96e80095f42ff7f1a15b27dd94ca # v3.0.4
       with:
         miniforge-version: latest
-        miniforge-variant: Mambaforge
       if: matrix.os == 'windows'
 
     - name: Build on windows
@@ -252,19 +251,3 @@ jobs:
         UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
       if: matrix.os == 'windows'
-
-    - name: Upload artifacts to Github
-      uses: actions/upload-artifact@v2
-      with:
-        path: build_artifacts/pypi_wheels
-        name: ${{ matrix.CONFIG }}
-
-    - name: Upload artifacts to Github release
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: build_artifacts/pypi_wheels/*.whl
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
-      if: startsWith(github.ref, 'refs/tags/')
