@@ -11,6 +11,8 @@ __migrator:
             - 3.9.* *_cpython
             - 3.10.* *_cpython
             - 3.11.* *_cpython  # new entry
+            - 3.12.* *_cpython  # new entry
+            - 3.13.* *_cpython  # new entry
             - 3.6.* *_73_pypy
             - 3.7.* *_73_pypy
             - 3.8.* *_73_pypy
@@ -30,7 +32,7 @@ __migrator:
     exclude_pinned_pkgs: false
 
 python:
-  - 3.7.* *_cpython
+  - 3.8.* *_cpython
 # additional entries to add for zip_keys
 numpy:
   - 1.21

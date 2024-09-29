@@ -21,17 +21,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - CONFIG: linux_64_numpy1.21python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_64_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_64_numpy1.22python3.9.____73_pypy
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -41,14 +36,6 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-<<<<<<< HEAD
-=======
-            os: ubuntu
-          - CONFIG: linux_64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
           - CONFIG: linux_64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
@@ -59,17 +46,17 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_aarch64_numpy1.21python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_aarch64_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_aarch64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_aarch64_numpy1.22python3.9.____73_pypy
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -77,15 +64,8 @@ jobs:
           - CONFIG: linux_aarch64_numpy1.22python3.9.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
-<<<<<<< HEAD
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-=======
-          - CONFIG: linux_aarch64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
           - CONFIG: linux_aarch64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
@@ -96,17 +76,17 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_aarch64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_ppc64le_numpy1.21python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_ppc64le_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_ppc64le_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_ppc64le_numpy1.22python3.9.____73_pypy
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -114,15 +94,8 @@ jobs:
           - CONFIG: linux_ppc64le_numpy1.22python3.9.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
-<<<<<<< HEAD
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-=======
-          - CONFIG: linux_ppc64le_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-            os: ubuntu
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
           - CONFIG: linux_ppc64le_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
@@ -130,54 +103,26 @@ jobs:
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_ppc64le_numpy1.26python3.12.____cpython
             UPLOAD_PACKAGES: True
-<<<<<<< HEAD
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_ppc64le_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: osx_64_numpy1.21python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
           - CONFIG: osx_64_numpy1.22python3.10.____cpython
-=======
-            os: windows
-          - CONFIG: win_64_numpy1.20python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: win_64_numpy1.20python3.9.____73_pypy
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: win_64_numpy1.20python3.9.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: win_64_numpy1.21python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: win_64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: win_64_numpy1.23python3.11.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-          - CONFIG: osx_64_numpy1.20python3.8.____73_pypy
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-13']
-          - CONFIG: osx_64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-13']
-          - CONFIG: osx_64_numpy1.22python3.9.____73_pypy
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
           - CONFIG: osx_64_numpy1.22python3.9.____cpython
             UPLOAD_PACKAGES: True
             os: macos
-<<<<<<< HEAD
             runs_on: ['macos-13']
-=======
-          - CONFIG: osx_64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
           - CONFIG: osx_64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
@@ -186,24 +131,22 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
-          - CONFIG: osx_arm64_numpy1.22python3.10.____cpython
+          - CONFIG: osx_64_numpy2python3.13.____cp313
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
-          - CONFIG: osx_arm64_numpy1.22python3.8.____cpython
+          - CONFIG: osx_arm64_numpy1.21python3.8.____cpython
             UPLOAD_PACKAGES: True
             os: macos
-<<<<<<< HEAD
+            runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy1.22python3.10.____cpython
+            UPLOAD_PACKAGES: True
+            os: macos
             runs_on: ['macos-13']
           - CONFIG: osx_arm64_numpy1.22python3.9.____cpython
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
-=======
-          - CONFIG: osx_arm64_numpy1.21python3.7.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
->>>>>>> 5e0338709348a8ae7fd359b87c3e09aa431a34cb
           - CONFIG: osx_arm64_numpy1.23python3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
@@ -212,15 +155,15 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: win_64_numpy1.21python3.8.____cpython
+            UPLOAD_PACKAGES: True
+            os: windows
+            runs_on: ['windows-latest']
           - CONFIG: win_64_numpy1.22python3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-            runs_on: ['windows-latest']
-          - CONFIG: win_64_numpy1.22python3.8.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-            runs_on: ['windows-latest']
-          - CONFIG: win_64_numpy1.22python3.9.____73_pypy
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']
@@ -233,6 +176,10 @@ jobs:
             os: windows
             runs_on: ['windows-latest']
           - CONFIG: win_64_numpy1.26python3.12.____cpython
+            UPLOAD_PACKAGES: True
+            os: windows
+            runs_on: ['windows-latest']
+          - CONFIG: win_64_numpy2python3.13.____cp313
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']

@@ -27,7 +27,7 @@ macos_machine:
 mpfr:
 - '4'
 numpy:
-- '1.22'
+- '1.21'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -41,5 +41,6 @@ zip_keys:
   - cxx_compiler_version
 - - python
   - numpy
+  - channel_sources
 zlib:
 - '1'

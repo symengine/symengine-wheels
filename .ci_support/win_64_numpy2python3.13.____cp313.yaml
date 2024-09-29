@@ -3,7 +3,7 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge
+- conda-forge/label/python_rc,conda-forge
 channel_targets:
 - isuruf test
 cxx_compiler:
@@ -15,17 +15,18 @@ libflint:
 mpfr:
 - '4'
 numpy:
-- '1.22'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_73_pypy
+- 3.13.* *_cp313
 target_platform:
 - win-64
 zip_keys:
 - - python
   - numpy
+  - channel_sources
 zlib:
 - '1'
