@@ -10,9 +10,10 @@ __migrator:
             - 3.8.* *_cpython
             - 3.9.* *_cpython
             - 3.10.* *_cpython
-            - 3.11.* *_cpython  # new entry
-            - 3.12.* *_cpython  # new entry
-            - 3.13.* *_cpython  # new entry
+            - 3.11.* *_cpython
+            - 3.12.* *_cpython
+            - 3.13.* *_cp313
+            - 3.13.* *_cp313t
             - 3.6.* *_73_pypy
             - 3.7.* *_73_pypy
             - 3.8.* *_73_pypy
