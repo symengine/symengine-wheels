@@ -57,6 +57,8 @@ requirements:
     - setuptools
     - cython >=0.29.24  # [build_platform == target_platform]
     - pip
+    - auditwheel      # [linux]
+    - delocate        # [win or osx]
   run:
     - python
 
