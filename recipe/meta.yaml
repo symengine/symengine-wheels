@@ -47,7 +47,7 @@ requirements:
     - mpir          # [win]
     - mpfr
     - mpc
-    - libflint 3.* *nontl*
+    - libflint 3.0.*
     - winpthreads-devel   # [win]
     - llvmdev <17
     - zlib
