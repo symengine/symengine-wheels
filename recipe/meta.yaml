@@ -39,8 +39,6 @@ requirements:
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - setuptools      # [build_platform != target_platform]
-    - auditwheel      # [linux]
-    - delocate        # [win or osx]
     - unzip           # [unix]
     - m2-unzip        # [win]
     - cython >=0.29.24

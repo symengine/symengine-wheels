@@ -71,13 +71,13 @@ pushd python
   if [[ "$target_platform" == linux-64 ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
-    auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_x86_64
+    $PYTHON -m auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_x86_64
   elif [[ "$target_platform" == linux-* ]]; then
     rm -rf $PREFIX/lib/libstdc++.*
     rm -rf $PREFIX/lib/libgcc*
-    auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
+    $PYTHON -m auditwheel repair dist/*.whl -w $PWD/fixed_wheels --plat manylinux2014_$ARCH
   else
-    python $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
+    $PYTHON $(which delocate-wheel) -w fixed_wheels --sanitize-rpaths -v dist/*.whl
   fi
 popd
 
