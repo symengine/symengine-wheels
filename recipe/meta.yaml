@@ -48,7 +48,6 @@ requirements:
     - mpfr
     - mpc
     - libflint 3.0.*
-    - winpthreads-devel   # [win]
     - llvmdev <17
     - zlib
     - python
