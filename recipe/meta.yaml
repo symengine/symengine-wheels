@@ -63,7 +63,7 @@ test:
   requires:
     - pytest
     - sympy
-    - numpy
+    - numpy   # [not is_freethreading]
 
 about:
   home: https://github.com/symengine/symengine.py
