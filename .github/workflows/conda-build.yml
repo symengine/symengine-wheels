@@ -51,6 +51,11 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_64_numpy2python3.13.____cp313t
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_aarch64_numpy1.21python3.8.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
@@ -77,6 +82,11 @@ jobs:
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: linux_aarch64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_aarch64_numpy2python3.13.____cp313t
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -111,6 +121,11 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+          - CONFIG: linux_ppc64le_numpy2python3.13.____cp313t
+            UPLOAD_PACKAGES: True
+            os: ubuntu
+            runs_on: ['ubuntu-latest']
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
           - CONFIG: osx_64_numpy1.21python3.8.____cpython
             UPLOAD_PACKAGES: True
             os: macos
@@ -132,6 +147,10 @@ jobs:
             os: macos
             runs_on: ['macos-13']
           - CONFIG: osx_64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
+          - CONFIG: osx_64_numpy2python3.13.____cp313t
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
@@ -159,6 +178,10 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
+          - CONFIG: osx_arm64_numpy2python3.13.____cp313t
+            UPLOAD_PACKAGES: True
+            os: macos
+            runs_on: ['macos-13']
           - CONFIG: win_64_numpy1.21python3.8.____cpython
             UPLOAD_PACKAGES: True
             os: windows
@@ -180,6 +203,10 @@ jobs:
             os: windows
             runs_on: ['windows-latest']
           - CONFIG: win_64_numpy2python3.13.____cp313
+            UPLOAD_PACKAGES: True
+            os: windows
+            runs_on: ['windows-latest']
+          - CONFIG: win_64_numpy2python3.13.____cp313t
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']
@@ -255,3 +282,19 @@ jobs:
         UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
       if: matrix.os == 'windows'
+
+    - name: Upload artifacts to Github
+      uses: actions/upload-artifact@v2
+      with:
+        path: build_artifacts/pypi_wheels
+        name: ${{ matrix.CONFIG }}
+
+    - name: Upload artifacts to Github release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: build_artifacts/pypi_wheels/*.whl
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+      if: startsWith(github.ref, 'refs/tags/')
