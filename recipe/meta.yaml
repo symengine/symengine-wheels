@@ -1,5 +1,5 @@
-{% set version = "0.11.0" %}
-{% set cxx_version = "0.11.1" %}
+{% set version = "0.13.0" %}
+{% set cxx_version = "0.13.0" %}
 
 package:
   name: symengine-wheels
@@ -7,11 +7,13 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 702fc5e5640e81714eacecf9da03ba1d9cc2f49fc8c4c6154b57d3d7dfacc698
+    sha256: fa48beb9b8d4574482edf19dc8671d4cb78f53c2511047a0e52bb88fbdeb6d0c
     folder: python
+    patches:
+      - 0001-cython-3.1-fixes.patch
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: 217b39955dc19f920c6f54c057fdc89e8e155ddee8f0e3c3cacc67b3e3850b64
+    sha256: f46bcf037529cd1a422369327bf360ad4c7d2b02d0f607a62a5b09c74a55bb59
     folder: cxx
 
 build:
@@ -25,37 +27,37 @@ build:
     - zlib
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - make   # [unix]
     - ninja  # [win]
-    - unzip           # [unix]
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
     - setuptools      # [build_platform != target_platform]
-    - auditwheel      # [linux]
-    - delocate        # [win]
+    - unzip           # [unix]
     - m2-unzip        # [win]
-    - pip             # [osx]
-    - packaging       # [osx]
     - cython >=0.29.24
   host:
     - gmp           # [unix]
     - mpir          # [win]
     - mpfr
     - mpc
-    - libflint 2.* *nontl*
+    - libflint 3.0.*
     - llvmdev <17
     - zlib
     - python
     - setuptools
     - cython >=0.29.24  # [build_platform == target_platform]
     - pip
+    - auditwheel      # [linux]
+    - delocate        # [win or osx]
   run:
     - python
 
@@ -63,7 +65,7 @@ test:
   requires:
     - pytest
     - sympy
-    - numpy
+    - numpy   # [not is_freethreading]
 
 about:
   home: https://github.com/symengine/symengine.py

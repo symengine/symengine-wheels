@@ -37,11 +37,11 @@ type %RECIPE_DIR%\\UPSTREAM_LICENSES.txt >> LICENSE
 if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
-python %RECIPE_DIR%\fix_windows_wheel.py ^
+%PYTHON% %RECIPE_DIR%\fix_windows_wheel.py ^
   %dep_dir%\mpir.dll ^
   %dep_dir%\mpfr.dll ^
   %dep_dir%\mpc.dll ^
-  %dep_dir%\flint-17.dll ^
+  %dep_dir%\flint-18.dll ^
   %dep_dir%\pthreadVSE2.dll ^
   %dep_dir%\zstd.dll ^
   %dep_dir%\zlib.dll

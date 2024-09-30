@@ -1,7 +1,7 @@
 
 
     - name: Upload artifacts to Github
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         path: build_artifacts/pypi_wheels
         name: ${{ matrix.CONFIG }}
