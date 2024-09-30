@@ -1,0 +1,57 @@
+From 1e47d959c4edd9c15e1f893a570e4b0082a39501 Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Sun, 29 Sep 2024 16:25:26 -0500
+Subject: [PATCH 1/3] cython 3.1 fixes
+
+---
+ cmake/cython_test.pyx                  | 3 ---
+ symengine/lib/symengine_wrapper.in.pyx | 8 ++++----
+ 2 files changed, 4 insertions(+), 7 deletions(-)
+
+diff --git a/cmake/cython_test.pyx b/cmake/cython_test.pyx
+index 22cdb17..cb803c6 100644
+--- a/cmake/cython_test.pyx
++++ b/cmake/cython_test.pyx
+@@ -1,6 +1,3 @@
+-# Test that numpy works in Cython:
+-from numpy cimport ndarray
+-
+ # Test that libcpp module is present:
+ from libcpp.vector cimport vector
+ from libcpp.string cimport string
+diff --git a/symengine/lib/symengine_wrapper.in.pyx b/symengine/lib/symengine_wrapper.in.pyx
+index 8bb9f9c..26c31ad 100644
+--- a/symengine/lib/symengine_wrapper.in.pyx
++++ b/symengine/lib/symengine_wrapper.in.pyx
+@@ -5135,24 +5135,24 @@ cdef class _Lambdify(object):
+             return result
+ 
+ 
+-cdef double _scipy_callback_lambda_real(int n, double *x, void *user_data) nogil:
++cdef double _scipy_callback_lambda_real(int n, double *x, void *user_data) noexcept nogil:
+     cdef symengine.LambdaRealDoubleVisitor* lamb = <symengine.LambdaRealDoubleVisitor *>user_data
+     cdef double result
+     deref(lamb).call(&result, x)
+     return result
+ 
+-cdef void _ctypes_callback_lambda_real(double *output, const double *input, void *user_data) nogil:
++cdef void _ctypes_callback_lambda_real(double *output, const double *input, void *user_data) noexcept nogil:
+     cdef symengine.LambdaRealDoubleVisitor* lamb = <symengine.LambdaRealDoubleVisitor *>user_data
+     deref(lamb).call(output, input)
+ 
+ IF HAVE_SYMENGINE_LLVM:
+-    cdef double _scipy_callback_llvm_real(int n, double *x, void *user_data) nogil:
++    cdef double _scipy_callback_llvm_real(int n, double *x, void *user_data) noexcept nogil:
+         cdef symengine.LLVMDoubleVisitor* lamb = <symengine.LLVMDoubleVisitor *>user_data
+         cdef double result
+         deref(lamb).call(&result, x)
+         return result
+ 
+-    cdef void _ctypes_callback_llvm_real(double *output, const double *input, void *user_data) nogil:
++    cdef void _ctypes_callback_llvm_real(double *output, const double *input, void *user_data) noexcept nogil:
+         cdef symengine.LLVMDoubleVisitor* lamb = <symengine.LLVMDoubleVisitor *>user_data
+         deref(lamb).call(output, input)
+ 
+-- 
+2.44.0
+
