@@ -10,7 +10,9 @@ source:
     sha256: fa48beb9b8d4574482edf19dc8671d4cb78f53c2511047a0e52bb88fbdeb6d0c
     folder: python
     patches:
-      - 0001-cython-3.1-fixes.patch
+      - patches/0001-cython-3.1-fixes.patch
+      - patches/0002-Another-cython-3.1-fix.patch
+      - patches/0003-freethreading-support.patch
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
     sha256: f46bcf037529cd1a422369327bf360ad4c7d2b02d0f607a62a5b09c74a55bb59
