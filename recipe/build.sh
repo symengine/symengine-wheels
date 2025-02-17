@@ -35,6 +35,7 @@ cmake ${CMAKE_ARGS} \
     -DWITH_COTIRE=no \
     -DBUILD_FOR_DISTRIBUTION=yes \
     -DBUILD_SHARED_LIBS=no \
+    -DWITH_LLVM_DYLIB=no \
     ..
 
 make -j${CPU_COUNT} VERBOSE=1
