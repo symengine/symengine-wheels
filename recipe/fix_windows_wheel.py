@@ -18,12 +18,9 @@ def add_library(lib_paths, dist_path='dist'):
                 shutil.copy2(lib_path, pjoin('symengine', 'lib'))
 
 def main():
-    args = [sys.argv[1]]
-    for arg in sys.argv[2:]:
-      print(arg, glob(arg))
+    args = []
+    for arg in sys.argv[1:]:
       args.extend(glob(arg))
-    for arg in args:
-      print(arg)
     add_library(args)
 
 if __name__ == '__main__':
