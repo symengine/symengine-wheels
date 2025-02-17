@@ -23,6 +23,7 @@ build:
     - libflint
     - llvmdev
     - zlib
+    - zstd
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
