@@ -41,9 +41,9 @@ if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
 %PYTHON% %RECIPE_DIR%\fix_windows_wheel.py ^
-  %dep_dir%\mpir.dll ^
-  %dep_dir%\mpfr.dll ^
-  %dep_dir%\mpc.dll ^
+  %dep_dir%\libgmp-10.dll ^
+  %dep_dir%\libmpfr-6.dll ^
+  %dep_dir%\libmpc-3.dll ^
   %dep_dir%\flint-19.dll ^
   %dep_dir%\libwinpthread-1.dll ^
   %dep_dir%\zstd.dll ^
