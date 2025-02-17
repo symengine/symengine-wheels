@@ -20,7 +20,10 @@ def add_library(lib_paths, dist_path='dist'):
 def main():
     args = [sys.argv[1]]
     for arg in sys.argv[2:]:
+      print(arg, glob(arg))
       args.extend(glob(arg))
+    for arg in args:
+      print(arg)
     add_library(args)
 
 if __name__ == '__main__':
