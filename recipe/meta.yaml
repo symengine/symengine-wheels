@@ -41,6 +41,7 @@ requirements:
     - setuptools      # [build_platform != target_platform]
     - unzip           # [unix]
     - m2-unzip        # [win]
+    - m2-sed          # [win]
     - cython >=0.29.24
   host:
     - gmp

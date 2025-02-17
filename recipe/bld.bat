@@ -1,3 +1,5 @@
+sed -i.bak "s/typedef int pid_t/typedef int pid2_t/g" %PREFIX%\include\pyconfig.h
+
 cd cxx
 
 mkdir build
