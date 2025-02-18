@@ -1,3 +1,5 @@
+sed -i.bak "s/typedef int pid_t/typedef int pid2_t/g" %PREFIX%\include\pyconfig.h
+
 cd cxx
 
 mkdir build
@@ -18,6 +20,7 @@ cmake ^
     -DBUILD_SHARED_LIBS=yes ^
     -DMSVC_USE_MT=no ^
     -DBUILD_SHARED_LIBS=no ^
+    -DWITH_LLVM_DYLIB=no ^
     ..
 if errorlevel 1 exit 1
 
@@ -38,13 +41,14 @@ if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
 %PYTHON% %RECIPE_DIR%\fix_windows_wheel.py ^
-  %dep_dir%\mpir.dll ^
-  %dep_dir%\mpfr.dll ^
-  %dep_dir%\mpc.dll ^
-  %dep_dir%\flint-18.dll ^
-  %dep_dir%\pthreadVSE2.dll ^
+  %dep_dir%\libgmp-*.dll ^
+  %dep_dir%\libmpfr-*.dll ^
+  %dep_dir%\libmpc-*.dll ^
+  %dep_dir%\flint-*.dll ^
+  %dep_dir%\libwinpthread-1.dll ^
   %dep_dir%\zstd.dll ^
-  %dep_dir%\zlib.dll
+  %dep_dir%\zlib.dll ^
+  %dep_dir%\libgcc_s_seh-1.dll
 if errorlevel 1 exit 1
 
 mkdir %RECIPE_DIR%\..\build_artifacts

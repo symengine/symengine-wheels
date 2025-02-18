@@ -3,7 +3,7 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge/label/python_rc,conda-forge/label/cython_dev,conda-forge
+- conda-forge/label/cython_dev,conda-forge
 channel_targets:
 - isuruf test
 cxx_compiler:
@@ -13,7 +13,7 @@ gmp:
 is_freethreading:
 - 'true'
 libflint:
-- '3.0'
+- '3.1'
 mpfr:
 - '4'
 numpy:
@@ -33,3 +33,5 @@ zip_keys:
   - is_freethreading
 zlib:
 - '1'
+zstd:
+- '1.5'

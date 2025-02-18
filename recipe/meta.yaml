@@ -1,5 +1,5 @@
-{% set version = "0.13.0" %}
-{% set cxx_version = "0.13.0" %}
+{% set version = "0.14.0" %}
+{% set cxx_version = "0.14.0" %}
 
 package:
   name: symengine-wheels
@@ -7,15 +7,11 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: fa48beb9b8d4574482edf19dc8671d4cb78f53c2511047a0e52bb88fbdeb6d0c
+    sha256: 38e742a9b3d03b36f07b2ccba39e7e3d626e37557c26bb03ce575b95cfbd9cc4
     folder: python
-    patches:
-      - patches/0001-cython-3.1-fixes.patch
-      - patches/0002-Another-cython-3.1-fix.patch
-      - patches/0003-freethreading-support.patch
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: f46bcf037529cd1a422369327bf360ad4c7d2b02d0f607a62a5b09c74a55bb59
+    sha256: 11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
     folder: cxx
 
 build:
@@ -27,6 +23,7 @@ build:
     - libflint
     - llvmdev
     - zlib
+    - zstd
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
@@ -45,15 +42,19 @@ requirements:
     - setuptools      # [build_platform != target_platform]
     - unzip           # [unix]
     - m2-unzip        # [win]
+    - m2-sed          # [win]
     - cython >=0.29.24
   host:
-    - gmp           # [unix]
-    - mpir          # [win]
+    - gmp
     - mpfr
     - mpc
-    - libflint 3.0.*
+    - libflint
+    - winpthreads-devel  # [win]
     - llvmdev <17
+    # for llvm
     - zlib
+    # for llvm
+    - zstd
     - python
     - setuptools
     - cython >=0.29.24  # [build_platform == target_platform]
