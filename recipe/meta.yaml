@@ -1,4 +1,4 @@
-{% set version = "0.14.0" %}
+{% set version = "0.14.1" %}
 {% set cxx_version = "0.14.0" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 38e742a9b3d03b36f07b2ccba39e7e3d626e37557c26bb03ce575b95cfbd9cc4
+    sha256: 3e79d39af5e9f024cd4b8d1372314ac2b83cace7d49cdbad482b4aec5b04c37b
     folder: python
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
@@ -16,6 +16,7 @@ source:
 
 build:
   number: 0
+  skip: true    # [py<=38]
   ignore_run_exports_from:
     - gmp
     - mpfr
@@ -30,7 +31,7 @@ build:
 
 requirements:
   build:
-    - cmake
+    - cmake <4
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib('c') }}
