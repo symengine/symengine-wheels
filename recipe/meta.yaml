@@ -20,6 +20,8 @@ build:
   number: 0
   skip: true    # [py<=38 or (is_abi3 and py>311)]
   python_version_independent: true  # [is_abi3]
+  script_env:
+    - SYMENGINE_PY_LIMITED_API=3.11   # [is_abi3 and py>=311]
   ignore_run_exports_from:
     - gmp
     - mpfr
