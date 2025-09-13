@@ -3,7 +3,7 @@ c_compiler:
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge
+- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - isuruf test
 cxx_compiler:
@@ -30,6 +30,7 @@ target_platform:
 - win-64
 zip_keys:
 - - python
+  - channel_sources
   - is_freethreading
   - is_abi3
 zlib:
