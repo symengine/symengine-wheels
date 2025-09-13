@@ -18,7 +18,7 @@ source:
 
 build:
   number: 0
-  skip: true    # [py<=38 or (is_abi3 and py>311)]
+  skip: true    # [py<=38 or (is_abi3 and (py == 311 or py == 312 or py>313))]
   python_version_independent: true  # [is_abi3]
   script_env:
     - SYMENGINE_PY_LIMITED_API=3.11   # [is_abi3 and py>=311]
