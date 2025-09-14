@@ -9,6 +9,8 @@ source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
     sha256: 3e79d39af5e9f024cd4b8d1372314ac2b83cace7d49cdbad482b4aec5b04c37b
     folder: python
+    patches:
+      - abi3.diff
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
     sha256: 11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
@@ -16,7 +18,10 @@ source:
 
 build:
   number: 0
-  skip: true    # [py<=38]
+  skip: true    # [py<=38 or (is_abi3 and py>311)]
+  python_version_independent: true  # [is_abi3 and py>=311]
+  script_env:
+    - SYMENGINE_PY_LIMITED_API=3.11   # [is_abi3 and py>=311]
   ignore_run_exports_from:
     - gmp
     - mpfr
@@ -57,6 +62,7 @@ requirements:
     # for llvm
     - zstd
     - python
+    - python-abi3                # [is_abi3 and py>=311]
     - setuptools
     - cython >=0.29.24  # [build_platform == target_platform]
     - pip
@@ -70,6 +76,10 @@ test:
     - pytest
     - sympy
     - numpy   # [not is_freethreading]
+    - abi3audit                  # [is_abi3 and py>=311]
+  commands:
+    - abi3audit ${SP_DIR}/symengine/lib/symengine_wrapper.abi3.so -s -v --assume-minimum-abi3 3.11    # [unix and is_abi3 and py>=311]
+    - abi3audit %SP_DIR%/symengine/lib/symengine_wrapper.pyd -s -v --assume-minimum-abi3 3.11         # [win and is_abi3 and py>=311]
 
 about:
   home: https://github.com/symengine/symengine.py

@@ -1,0 +1,170 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e83c95b..cc990c4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -23,6 +23,7 @@ set(CMAKE_CXX_FLAGS_DEBUG ${SYMENGINE_CXX_FLAGS_DEBUG})
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SYMENGINE_CXX_FLAGS}")
+ include_directories(${SYMENGINE_INCLUDE_DIRS})
+ 
++set(WITH_PY_LIMITED_API OFF CACHE STRING "Use CPython's limited API")
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
+ find_package(Python REQUIRED)
+ find_package(Cython REQUIRED)
+diff --git a/cmake/FindCython.cmake b/cmake/FindCython.cmake
+index beac6c5..e35d44b 100644
+--- a/cmake/FindCython.cmake
++++ b/cmake/FindCython.cmake
+@@ -24,6 +24,19 @@ IF (CYTHON_BIN)
+     else (CYTHON_RESULT EQUAL 0)
+         SET(Cython_Compilation_Failed TRUE)
+     endif (CYTHON_RESULT EQUAL 0)
++    execute_process(
++        COMMAND ${CYTHON_BIN} --version
++        RESULT_VARIABLE CYTHON_VERSION_RESULT
++        OUTPUT_VARIABLE CYTHON_VERSION_OUTPUT
++        ERROR_VARIABLE CYTHON_VERSION_ERROR
++    )
++    if (CYTHON_VERSION_RESULT EQUAL 0)
++        string(STRIP ${CYTHON_VERSION_OUTPUT} CYTHON_VERSION_OUTPUT)
++        if ("${CYTHON_VERSION_OUTPUT}" MATCHES "Cython version")
++             string(SUBSTRING "${CYTHON_VERSION_OUTPUT}" 15 -1 CYTHON_VERSION)
++        endif ()
++    endif ()
++    message(STATUS "Cython version: ${CYTHON_VERSION}")
+ ENDIF (CYTHON_BIN)
+ 
+ 
+@@ -31,6 +44,11 @@ IF (Cython_FOUND)
+     IF (NOT Cython_FIND_QUIETLY)
+         MESSAGE(STATUS "Found CYTHON: ${CYTHON_BIN}")
+     ENDIF (NOT Cython_FIND_QUIETLY)
++    IF (WITH_PY_LIMITED_API AND "${CYTHON_VERSION}" VERSION_LESS "3.1")
++        MESSAGE(FATAL_ERROR
++            "Your Cython version (${CYTHON_VERSION}) is too old. Please upgrade Cython to 3.1 or newer."
++        )
++    ENDIF ()
+ ELSE (Cython_FOUND)
+     IF (Cython_FIND_REQUIRED)
+         if(Cython_Compilation_Failed)
+diff --git a/cmake/FindPython.cmake b/cmake/FindPython.cmake
+index c1f6c43..7ed8287 100644
+--- a/cmake/FindPython.cmake
++++ b/cmake/FindPython.cmake
+@@ -48,15 +48,17 @@ if ("${PY_GIL_DISABLED}" STREQUAL "True")
+ endif()
+ 
+ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+-  FIND_LIBRARY(PYTHON_LIBRARY NAMES
+-        python${PYTHON_VERSION}${PY_THREAD}
+-        python${PYTHON_VERSION}m
+-        python${PYTHON_VERSION_WITHOUT_DOTS}${PY_THREAD}
+-      PATHS ${PYTHON_LIB_PATH} ${PYTHON_PREFIX_PATH}/lib ${PYTHON_PREFIX_PATH}/libs
+-      PATH_SUFFIXES ${CMAKE_LIBRARY_ARCHITECTURE}
+-      NO_DEFAULT_PATH
+-      NO_SYSTEM_ENVIRONMENT_PATH
+-  )
++    if (WITH_PY_LIMITED_API)
++        set(PYTHON_LIBRARY_NAMES python3)
++    else()
++        set(PYTHON_LIBRARY_NAMES python${PYTHON_VERSION}${PY_THREAD} python${PYTHON_VERSION}m python${PYTHON_VERSION_WITHOUT_DOTS}${PY_THREAD})
++    endif()
++    FIND_LIBRARY(PYTHON_LIBRARY NAMES ${PYTHON_LIBRARY_NAMES}
++        PATHS ${PYTHON_LIB_PATH} ${PYTHON_PREFIX_PATH}/lib ${PYTHON_PREFIX_PATH}/libs
++        PATH_SUFFIXES ${CMAKE_LIBRARY_ARCHITECTURE}
++        NO_DEFAULT_PATH
++        NO_SYSTEM_ENVIRONMENT_PATH
++    )
+ endif()
+ 
+ execute_process(
+@@ -74,6 +76,14 @@ execute_process(
+ )
+ string(STRIP ${PYTHON_EXTENSION_SOABI_tmp} PYTHON_EXTENSION_SOABI_tmp)
+ 
++if (WITH_PY_LIMITED_API)
++    if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
++        set(PYTHON_EXTENSION_SOABI_tmp "")
++    else()
++        set(PYTHON_EXTENSION_SOABI_tmp ".abi3")
++    endif()
++endif()
++
+ set(PYTHON_EXTENSION_SOABI ${PYTHON_EXTENSION_SOABI_tmp}
+     CACHE STRING "Suffix for python extensions")
+ 
+@@ -143,5 +153,12 @@ macro(ADD_PYTHON_LIBRARY name)
+             target_compile_definitions(${name} PRIVATE Py_GIL_DISABLED=1)
+         ENDIF()
+     ENDIF()
+-
++    IF(WITH_PY_LIMITED_API)
++        target_compile_definitions(
++            ${name}
++            PRIVATE
++              Py_LIMITED_API=${WITH_PY_LIMITED_API}
++              CYTHON_LIMITED_API=1
++        )
++    ENDIF()
+ endmacro(ADD_PYTHON_LIBRARY)
+diff --git a/setup.py b/setup.py
+index 23d948e..b0eb020 100644
+--- a/setup.py
++++ b/setup.py
+@@ -10,6 +10,18 @@ if sys.version_info[:2] < (3, 9):
+           "Python %d.%d detected" % sys.version_info[:2])
+     sys.exit(-1)
+ 
++def _get_limited_api():
++    value = os.environ.get("SYMENGINE_PY_LIMITED_API")
++    if not value:
++        return None
++    else:
++        version = tuple(map(int, value.split(".")))
++        if version < (3, 11):
++            raise ValueError(f"symengine needs at least python 3.11 limited API support. Got {value}")
++        return version
++
++limited_api = _get_limited_api()
++
+ # use setuptools by default as per the official advice at:
+ # packaging.python.org/en/latest/current.html#packaging-tool-recommendations
+ use_setuptools = True
+@@ -65,6 +77,7 @@ global_user_options = [
+     ('build-type=', None, 'build type: Release or Debug'),
+     ('define=', 'D',
+      'options to cmake <var>:<type>=<value>'),
++    ('py-limited-api=', None, 'Use Py_LIMITED_API with given version.'),
+ ]
+ 
+ def _process_define(arg):
+@@ -122,6 +135,11 @@ class BuildExtWithCmake(_build_ext):
+         cmake_cmd.extend(process_opts(cmake_opts))
+         if not path.exists(path.join(build_dir, "CMakeCache.txt")):
+             cmake_cmd.extend(self.get_generator())
++
++        if limited_api:
++            h = limited_api[0] * 16**6 + limited_api[1] * 16**4
++            cmake_cmd.append(f"-DWITH_PY_LIMITED_API={h}")
++
+         if subprocess.call(cmake_cmd, cwd=build_dir) != 0:
+             raise OSError("error calling cmake")
+ 
+@@ -202,11 +220,17 @@ cmdclass={
+           }
+ 
+ try:
+-    from wheel.bdist_wheel import bdist_wheel
++    try:
++        from setuptools.command.bdist_wheel import bdist_wheel
++    except ImportError:
++        from wheel.bdist_wheel import bdist_wheel
++
+     class BdistWheelWithCmake(bdist_wheel):
+         def finalize_options(self):
+             bdist_wheel.finalize_options(self)
+             self.root_is_pure = False
++            if limited_api:
++                self.py_limited_api = "cp" + "".join(str(c) for c in limited_api)
+     cmdclass["bdist_wheel"] = BdistWheelWithCmake
+ except ImportError:
+     pass
