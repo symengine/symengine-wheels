@@ -36,7 +36,7 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: linux_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -56,7 +56,7 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_aarch64_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: linux_aarch64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -76,7 +76,7 @@ jobs:
             os: ubuntu
             runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_ppc64le_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: linux_ppc64le_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: ubuntu
             runs_on: ['ubuntu-latest']
@@ -93,7 +93,7 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
-          - CONFIG: osx_64_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: osx_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
@@ -109,7 +109,7 @@ jobs:
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
-          - CONFIG: osx_arm64_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: osx_arm64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: macos
             runs_on: ['macos-13']
@@ -125,7 +125,7 @@ jobs:
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']
-          - CONFIG: win_64_is_abi3trueis_freethreadingfalsepython3.13.____cp313
+          - CONFIG: win_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
             UPLOAD_PACKAGES: True
             os: windows
             runs_on: ['windows-latest']

@@ -18,7 +18,7 @@ source:
 
 build:
   number: 0
-  skip: true    # [py<=38 or (is_abi3 and (py == 311 or py == 312 or py>313))]
+  skip: true    # [py<=38 or (is_abi3 and py>311)]
   python_version_independent: true  # [is_abi3 and py>=311]
   script_env:
     - SYMENGINE_PY_LIMITED_API=3.11   # [is_abi3 and py>=311]
@@ -78,8 +78,8 @@ test:
     - numpy   # [not is_freethreading]
     - abi3audit                  # [is_abi3 and py>=311]
   commands:
-    - abi3audit ${SP_DIR}/symengine/lib/symengine_wrapper.abi3.so -s -v --assume-minimum-abi3 3.11    # [unix and is_abi3 and py>311]
-    - abi3audit %SP_DIR%/symengine/lib/symengine_wrapper.pyd -s -v --assume-minimum-abi3 3.11         # [win and is_abi3 and py>311]
+    - abi3audit ${SP_DIR}/symengine/lib/symengine_wrapper.abi3.so -s -v --assume-minimum-abi3 3.11    # [unix and is_abi3 and py>=311]
+    - abi3audit %SP_DIR%/symengine/lib/symengine_wrapper.pyd -s -v --assume-minimum-abi3 3.11         # [win and is_abi3 and py>=311]
 
 about:
   home: https://github.com/symengine/symengine.py
