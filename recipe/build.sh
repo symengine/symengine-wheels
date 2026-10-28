@@ -84,6 +84,13 @@ done
 
 # Install the wheel
 for whl in python/fixed_wheels/*.whl; do
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" && "$target_platform" == linux-* ]]; then
+    # crossenv>=1.6 only accepts linux_<arch> wheels
+    mkdir -p python/linux_wheels
+    linux_whl=python/linux_wheels/$(basename $whl | sed -E "s/-manylinux[^-]*\.whl$/-linux_${target_platform#linux-}.whl/")
+    cp $whl $linux_whl
+    whl=$linux_whl
+  fi
   $PYTHON -m pip install $whl
 done
 
