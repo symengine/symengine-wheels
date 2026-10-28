@@ -1,5 +1,5 @@
-{% set version = "0.14.1" %}
-{% set cxx_version = "0.14.0" %}
+{% set version = "0.15.0" %}
+{% set cxx_version = "0.15.0" %}
 
 package:
   name: symengine-wheels
@@ -7,21 +7,19 @@ package:
 
 source:
   - url: https://github.com/symengine/symengine.py/releases/download/v{{ version }}/symengine.py-{{ version }}.tar.gz
-    sha256: 3e79d39af5e9f024cd4b8d1372314ac2b83cace7d49cdbad482b4aec5b04c37b
+    sha256: 5fac75a1b347308ba8b6e33b0bf74c5235446e268b3d023f80c02e1a873a7c18
     folder: python
-    patches:
-      - abi3.diff
 
   - url: https://github.com/symengine/symengine/releases/download/v{{ cxx_version }}/symengine-{{ cxx_version }}.tar.gz
-    sha256: 11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
+    sha256: 9f75f0367221abd88b9b60ef7b104b4aa1e34e99d3152c3df2bb2467bad2f04f
     folder: cxx
 
 build:
   number: 0
-  skip: true    # [py<=38 or (is_abi3 and py>311)]
+  skip: true    # [py<311 or (is_abi3 and py>311)]
   python_version_independent: true  # [is_abi3 and py>=311]
   script_env:
-    - SYMENGINE_PY_LIMITED_API=3.11   # [is_abi3 and py>=311]
+    - SKBUILD_WHEEL_PY_API=cp311   # [is_abi3 and py>=311]
   ignore_run_exports_from:
     - gmp
     - mpfr
@@ -45,11 +43,13 @@ requirements:
     - patchelf        # [linux]
     - python          # [build_platform != target_platform]
     - cross-python_{{ target_platform }}      # [build_platform != target_platform]
-    - setuptools      # [build_platform != target_platform]
+    - scikit-build-core  # [build_platform != target_platform]
+    - setuptools-scm     # [build_platform != target_platform]
+    - cython-cmake       # [build_platform != target_platform]
     - unzip           # [unix]
     - m2-unzip        # [win]
     - m2-sed          # [win]
-    - cython >=0.29.24
+    - cython >=3.1
   host:
     - gmp
     - mpfr
@@ -63,8 +63,10 @@ requirements:
     - zstd
     - python
     - python-abi3                # [is_abi3 and py>=311]
-    - setuptools
-    - cython >=0.29.24  # [build_platform == target_platform]
+    - scikit-build-core
+    - setuptools-scm
+    - cython-cmake
+    - cython >=3.1  # [build_platform == target_platform]
     - pip
     - auditwheel      # [linux]
     - delocate        # [win or osx]

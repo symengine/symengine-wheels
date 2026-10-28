@@ -36,7 +36,8 @@ cd ..
 
 cd python
 type %RECIPE_DIR%\\UPSTREAM_LICENSES.txt >> LICENSE
-%PYTHON% setup.py bdist_wheel build_ext --generator=Ninja install --symengine-dir=%LIBRARY_PREFIX%
+set CMAKE_GENERATOR=Ninja
+%PYTHON% -m pip wheel . -vv --no-deps --no-build-isolation -w dist -Ccmake.define.SymEngine_DIR=%LIBRARY_PREFIX%
 if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
