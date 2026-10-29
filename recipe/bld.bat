@@ -36,7 +36,9 @@ cd ..
 
 cd python
 type %RECIPE_DIR%\\UPSTREAM_LICENSES.txt >> LICENSE
-set CMAKE_GENERATOR=Ninja
+set "CMAKE_GENERATOR="
+set "CMAKE_GENERATOR_PLATFORM="
+set "CMAKE_GENERATOR_TOOLSET="
 %PYTHON% -m pip wheel . -vv --no-deps --no-build-isolation -w dist -Ccmake.define.SymEngine_DIR=%LIBRARY_PREFIX%
 if errorlevel 1 exit 1
 
