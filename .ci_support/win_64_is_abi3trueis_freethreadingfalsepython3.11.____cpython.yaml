@@ -15,7 +15,7 @@ is_abi3:
 is_freethreading:
 - false
 libflint:
-- '3.2'
+- '3.5'
 mpfr:
 - '4'
 numpy:
@@ -30,7 +30,6 @@ target_platform:
 - win-64
 zip_keys:
 - - python
-  - channel_sources
   - is_freethreading
   - is_abi3
 zlib:

@@ -51,20 +51,9 @@ rm -rf $PREFIX/lib/libc++.*
 pushd python
   echo "" >> LICENSE
   cat $RECIPE_DIR/UPSTREAM_LICENSES.txt >> LICENSE
-  PYTHON_ARGS="-D IGNORE_THIS=1"
-  for ARG in $CMAKE_ARGS; do
-    if [[ "$ARG" == "-DCMAKE_"* ]] && [[ "$ARG" != *";"* ]]; then
-      cmake_arg=$(echo $ARG | cut -d= -f1)
-      cmake_arg=$(echo $cmake_arg| cut -dD -f2-)
-      cmake_val=$(echo $ARG | cut -d= -f2-)
-      PYTHON_ARGS="$PYTHON_ARGS;${cmake_arg}=${cmake_val}"
-    fi
-  done
-  if [[ "$target_platform" == linux-ppc64le ]]; then
-    PYTHON_ARGS="$PYTHON_ARGS;SYMENGINE_COPY_EXTENSION=yes"
-  fi
-  PYTHON_ARGS="$PYTHON_ARGS;CMAKE_VERBOSE_MAKEFILE=1"
-  $PYTHON setup.py bdist_wheel build_ext -i $PYTHON_ARGS
+  $PYTHON -m pip wheel . -vv --no-deps --no-build-isolation -w dist \
+    -Ccmake.define.SymEngine_DIR=$PREFIX \
+    -Ccmake.define.CMAKE_VERBOSE_MAKEFILE=ON
 popd
 
 # Repair the wheel
@@ -95,6 +84,17 @@ done
 
 # Install the wheel
 for whl in python/fixed_wheels/*.whl; do
+  if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" && "$target_platform" == linux-* ]]; then
+    # crossenv>=1.6 only accepts linux_<arch> wheels
+    case "$target_platform" in
+      linux-64) linux_arch=x86_64 ;;
+      *) linux_arch=${target_platform#linux-} ;;
+    esac
+    mkdir -p python/linux_wheels
+    linux_whl=python/linux_wheels/$(basename $whl | sed -E "s/-manylinux[^-]*\.whl$/-linux_${linux_arch}.whl/")
+    cp $whl $linux_whl
+    whl=$linux_whl
+  fi
   $PYTHON -m pip install $whl
 done
 

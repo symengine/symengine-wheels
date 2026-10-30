@@ -1,0 +1,31 @@
+From 6344a52fb3d5ca8dd97cba0ed50c9591bc52c380 Mon Sep 17 00:00:00 2001
+From: Brandon Bocklund <bocklund1@llnl.gov>
+Date: Sun, 18 Oct 2026 22:58:26 -0700
+Subject: [PATCH] Restore qualified Cython module name in out-of-tree builds
+
+Cython infers a module's qualified name from the structure implied by `__init__.py`. Old CMake build copied the whole symengine/ package into the build tree (`file(COPY symengine/ ...)` in the top-level CMakeLists.txt), so those files were present.
+
+Since the move to scikit-build-core builds compile the wrapper with the module name `symengine_wrapper` instead of `symengine.lib.symengine_wrapper` and `Symbol('x').__module__ == "symengine_wrapper"` that breaks pickles across process.
+
+This only occurs on non-editable installs and builds outside the source tree that have `__init__.py` files in the right structure and my proposed fix is to create dummy `__init__.py` files to produce the correct import structure if they don't already exist (which they do for in-tree builds).
+---
+ symengine/lib/CMakeLists.txt | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/symengine/lib/CMakeLists.txt b/symengine/lib/CMakeLists.txt
+index 8db0c815..a3673264 100644
+--- a/symengine/lib/CMakeLists.txt
++++ b/symengine/lib/CMakeLists.txt
+@@ -35,6 +35,12 @@ if ("${CYTHON_VERSION}" VERSION_GREATER_EQUAL "3.1")
+   set(CYTHON_EXTRA_ARGS "-Xfreethreading_compatible=True")
+ endif()
+ 
++foreach(pkg_dir ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/..)
++  if(NOT EXISTS ${pkg_dir}/__init__.py)
++    file(WRITE ${pkg_dir}/__init__.py "")
++  endif()
++endforeach()
++
+ cython_transpile(
+   ${CMAKE_CURRENT_BINARY_DIR}/symengine_wrapper.pyx
+   LANGUAGE CXX

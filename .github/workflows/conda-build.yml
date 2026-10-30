@@ -19,165 +19,282 @@ jobs:
     timeout-minutes: 360
     strategy:
       fail-fast: false
+      max-parallel: 50
       matrix:
         include:
           - CONFIG: linux_64_is_abi3falseis_freethreadingtruepython3.13.____cp313t
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
             os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
             runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_64_is_abi3falseis_freethreadingtruepython3.14.____cp314t
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
             os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
             runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
-          - CONFIG: linux_64_is_abi3trueis_freethreadingfalsepython3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
+            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma10
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
             os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
             runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_is_abi3falseis_freethreadingtruepython3.13.____cp313t
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_is_abi3falseis_freethreadingtruepython3.14.____cp314t
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_aarch64_is_abi3trueis_freethreadingfalsepython3.10.____cpython
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
             os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
             runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_aarch64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_is_abi3falseis_freethreadingtruepython3.13.____cp313t
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_is_abi3falseis_freethreadingtruepython3.14.____cp314t
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-          - CONFIG: linux_ppc64le_is_abi3trueis_freethreadingfalsepython3.10.____cpython
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
             os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
             runs_on: ['ubuntu-latest']
-            DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            tools_install_dir: ~/miniforge3
           - CONFIG: linux_ppc64le_is_abi3trueis_freethreadingfalsepython3.11.____cpython
-            UPLOAD_PACKAGES: True
-            os: ubuntu
-            runs_on: ['ubuntu-latest']
             DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+            STORE_BUILD_ARTIFACTS: False
+            UPLOAD_PACKAGES: True
+            build_workspace_dir: build_artifacts
+            docker_run_args: 
+            free_disk_space: skip
+            os: ubuntu
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['ubuntu-latest']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_64_is_abi3falseis_freethreadingtruepython3.13.____cp313t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_64_is_abi3falseis_freethreadingtruepython3.14.____cp314t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
-          - CONFIG: osx_64_is_abi3trueis_freethreadingfalsepython3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_arm64_is_abi3falseis_freethreadingtruepython3.13.____cp313t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_arm64_is_abi3falseis_freethreadingtruepython3.14.____cp314t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
-          - CONFIG: osx_arm64_is_abi3trueis_freethreadingfalsepython3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: osx_arm64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_workspace_dir: ~/miniforge3/conda-bld
+            docker_run_args: 
+            free_disk_space: skip
             os: macos
-            runs_on: ['macos-13']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['macos-15-intel']
+            tools_install_dir: ~/miniforge3
           - CONFIG: win_64_is_abi3falseis_freethreadingtruepython3.13.____cp313t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_platform: win-64
+            build_workspace_dir: D:\\bld\\
+            docker_run_args: 
+            free_disk_space: skip
             os: windows
-            runs_on: ['windows-latest']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['windows-2022']
+            tools_install_dir: D:\Miniforge
           - CONFIG: win_64_is_abi3falseis_freethreadingtruepython3.14.____cp314t
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_platform: win-64
+            build_workspace_dir: D:\\bld\\
+            docker_run_args: 
+            free_disk_space: skip
             os: windows
-            runs_on: ['windows-latest']
-          - CONFIG: win_64_is_abi3trueis_freethreadingfalsepython3.10.____cpython
-            UPLOAD_PACKAGES: True
-            os: windows
-            runs_on: ['windows-latest']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['windows-2022']
+            tools_install_dir: D:\Miniforge
           - CONFIG: win_64_is_abi3trueis_freethreadingfalsepython3.11.____cpython
+            STORE_BUILD_ARTIFACTS: False
             UPLOAD_PACKAGES: True
+            build_platform: win-64
+            build_workspace_dir: D:\\bld\\
+            docker_run_args: 
+            free_disk_space: skip
             os: windows
-            runs_on: ['windows-latest']
+            pagefile_size: 0
+            resize_partitions: False
+            runs_on: ['windows-2022']
+            tools_install_dir: D:\Miniforge
     steps:
 
     - name: Checkout code
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - name: Configure binfmt_misc
+      if: matrix.os == 'ubuntu'
+      shell: bash
+      run: |
+        if [[ "$(uname -m)" == "x86_64" ]]; then
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset --credential yes
+        fi
 
     - name: Build on Linux
       id: build-linux
       if: matrix.os == 'ubuntu'
       env:
-        CONFIG: ${{ matrix.CONFIG }}
-        UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
-        DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }}
         CI: github_actions
-        CONDA_FORGE_DOCKER_RUN_ARGS: "${{ matrix.CONDA_FORGE_DOCKER_RUN_ARGS }}"
+        CONDA_BLD_PATH: ${{ matrix.build_workspace_dir }}
+        CONDA_FORGE_DOCKER_RUN_ARGS: ${{ matrix.docker_run_args }}
+        CONFIG: ${{ matrix.CONFIG }}
+        MINIFORGE_HOME: ${{ matrix.tools_install_dir }}
+        DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }}
+        UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
+        RATTLER_BUILD_COLOR: always
+        RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: 'true'
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
       shell: bash
       run: |
-        if [[ "$(uname -m)" == "x86_64" ]]; then
-          echo "::group::Configure binfmt_misc"
-          docker run --rm --privileged multiarch/qemu-user-static:register --reset --credential yes
-        fi
+        export CONDA_BLD_PATH="${CONDA_BLD_PATH/#~/${HOME}}"
+        export FEEDSTOCK_NAME="$(basename $GITHUB_REPOSITORY)"
+        export GIT_BRANCH="${GITHUB_REF_NAME}"
+        export MINIFORGE_HOME="${MINIFORGE_HOME/#~/${HOME}}"
         export flow_run_id="github_$GITHUB_RUN_ID"
         export remote_url="https://github.com/$GITHUB_REPOSITORY"
         export sha="$GITHUB_SHA"
-        export FEEDSTOCK_NAME="$(basename $GITHUB_REPOSITORY)"
-        export GIT_BRANCH="$(basename $GITHUB_REF)"
         if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
           export IS_PR_BUILD="True"
         else
           export IS_PR_BUILD="False"
         fi
-        echo "::endgroup::"
         ./.scripts/run_docker_build.sh
 
     - name: Build on macOS
       id: build-macos
       if: matrix.os == 'macos'
       env:
-        CONFIG: ${{ matrix.CONFIG }}
-        UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
         CI: github_actions
+        CONDA_BLD_PATH: ${{ matrix.build_workspace_dir }}
+        CONFIG: ${{ matrix.CONFIG }}
+        MINIFORGE_HOME: ${{ matrix.tools_install_dir }}
+        UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
+        RATTLER_BUILD_COLOR: always
+        RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: 'true'
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
       shell: bash
       run: |
+        export CONDA_BLD_PATH="${CONDA_BLD_PATH/#~/${HOME}}"
+        export FEEDSTOCK_NAME="$(basename $GITHUB_REPOSITORY)"
+        export GIT_BRANCH="${GITHUB_REF_NAME}"
+        export MINIFORGE_HOME="${MINIFORGE_HOME/#~/${HOME}}"
         export flow_run_id="github_$GITHUB_RUN_ID"
         export remote_url="https://github.com/$GITHUB_REPOSITORY"
         export sha="$GITHUB_SHA"
-        export FEEDSTOCK_NAME="$(basename $GITHUB_REPOSITORY)"
-        export GIT_BRANCH="$(basename $GITHUB_REF)"
         if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
           export IS_PR_BUILD="True"
         else
@@ -195,15 +312,18 @@ jobs:
         set "sha=%GITHUB_SHA%"
         call ".scripts\run_win_build.bat"
       env:
-        # default value; make it explicit, as it needs to match with artefact
-        # generation below. Not configurable for now, can be revisited later
-        CONDA_BLD_DIR: C:\bld
-        MINIFORGE_HOME: D:\Miniforge
-        PYTHONUNBUFFERED: 1
-        CONFIG: ${{ matrix.CONFIG }}
+        BUILD_PLATFORM: ${{ matrix.build_platform }}
         CI: github_actions
+        CONDA_BLD_PATH: ${{ matrix.build_workspace_dir }}
+        CONFIG: ${{ matrix.CONFIG }}
+        MINIFORGE_HOME: ${{ matrix.tools_install_dir }}
+        PYTHONUNBUFFERED: 1
         UPLOAD_PACKAGES: ${{ matrix.UPLOAD_PACKAGES }}
+        RATTLER_BUILD_COLOR: always
+        RATTLER_BUILD_ENABLE_GITHUB_INTEGRATION: 'true'
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
+
+
 
     - name: Upload artifacts to Github
       uses: actions/upload-artifact@v4
