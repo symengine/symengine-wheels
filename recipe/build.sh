@@ -53,6 +53,7 @@ pushd python
   cat $RECIPE_DIR/UPSTREAM_LICENSES.txt >> LICENSE
   $PYTHON -m pip wheel . -vv --no-deps --no-build-isolation -w dist \
     -Ccmake.define.SymEngine_DIR=$PREFIX \
+    -Ccmake.define.USE_SYSTEM_SYMENGINE=ON \
     -Ccmake.define.CMAKE_VERBOSE_MAKEFILE=ON
 popd
 

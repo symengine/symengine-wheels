@@ -39,7 +39,7 @@ type %RECIPE_DIR%\\UPSTREAM_LICENSES.txt >> LICENSE
 set "CMAKE_GENERATOR="
 set "CMAKE_GENERATOR_PLATFORM="
 set "CMAKE_GENERATOR_TOOLSET="
-%PYTHON% -m pip wheel . -vv --no-deps --no-build-isolation -w dist -Ccmake.define.SymEngine_DIR=%LIBRARY_PREFIX%
+%PYTHON% -m pip wheel . -vv --no-deps --no-build-isolation -w dist -Ccmake.define.SymEngine_DIR=%LIBRARY_PREFIX% -Ccmake.define.USE_SYSTEM_SYMENGINE=ON
 if errorlevel 1 exit 1
 
 set dep_dir=%LIBRARY_BIN%
